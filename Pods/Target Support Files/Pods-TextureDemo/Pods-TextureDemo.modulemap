@@ -1,0 +1,6 @@
+module Pods_TextureDemo [system] {
+  umbrella header "Pods-TextureDemo-umbrella.h"
+
+  export *
+  module * { export * }
+}

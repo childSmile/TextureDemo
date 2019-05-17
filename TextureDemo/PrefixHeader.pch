@@ -1,0 +1,56 @@
+//
+//  PrefixHeader.pch
+//  TextureDemo
+//
+//  Created by zqp on 2019/3/18.
+//  Copyright © 2019年 zqp. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+#define kMainScreen_width [[UIScreen mainScreen] bounds].size.width
+#define kMainScreen_height [[UIScreen mainScreen] bounds].size.height
+#define kWINDOW [UIApplication sharedApplication].delegate.window
+
+#define NavigationHeight ([[UIApplication sharedApplication] statusBarFrame].size.height + self.navigationController.navigationBar.frame.size.height)
+
+#define TabbarHeight  ([[UIApplication sharedApplication] statusBarFrame].size.height > 20 ? 83 : 49) // 适配iPhone x 底栏高度
+
+#define StatusHeight [[UIApplication sharedApplication] statusBarFrame].size.height
+
+
+#define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
+
+
+#define HPX(px) (kMainScreen_width*(px)/1080.0)//px:1080标注的px
+#define HPMZFont(px) [UIFont systemFontOfSize:([UIScreen mainScreen].bounds.size.width-375.0>0)?PXToFont(px):((px)/3)]
+#define HPBoldMZFont(px) [UIFont boldSystemFontOfSize:([UIScreen mainScreen].bounds.size.width-375.0>0)?PXToFont(px):((px)/3)]
+#define PXToFont(px) (px*3/8)
+
+#import "AsyncDisplayKit.h"
+#import "UIImage+ImageEffects.h"
+#import <ReactiveCocoa.h>
+#import <MJRefresh.h>
+#import "Masonry.h"
+#import "SDCycleScrollView.h"
+#import <MBProgressHUD.h>
+#import <AFNetworking.h>
+#import "ZGQActionSheetView.h"
+
+//自定义类
+#import "BaseServiceTool.h"
+#import "DataSourceModel.h"
+#import "PhotoModel.h"
+#import "Goods.h"
+#import "RecordModel.h"
+
+//类别
+#import "UIView+UIScreenDisplaying.h"
+#import "UIView+Event.h"
+#import "UIButton+Extend.h"
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#endif /* PrefixHeader_pch */
