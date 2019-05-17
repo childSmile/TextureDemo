@@ -35,9 +35,9 @@
 		276884CF228AA67900928FBF /* Goods.m in Sources */ = {isa = PBXBuildFile; fileRef = 276884CE228AA67900928FBF /* Goods.m */; };
 		276884D2228AA6EA00928FBF /* RecordModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 276884D1228AA6EA00928FBF /* RecordModel.m */; };
 		276884D8228CF8D100928FBF /* UIButton+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = 276884D7228CF8D100928FBF /* UIButton+Extend.m */; };
-		276884DE228CFE3F00928FBF /* ZGQTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 276884DB228CFE3F00928FBF /* ZGQTableViewCell.m */; };
-		276884DF228CFE3F00928FBF /* ZGQActionSheetView.m in Sources */ = {isa = PBXBuildFile; fileRef = 276884DC228CFE3F00928FBF /* ZGQActionSheetView.m */; };
 		276884E5228E55FA00928FBF /* PhotoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 276884E4228E55FA00928FBF /* PhotoCollectionViewCell.m */; };
+		276884EB228E826100928FBF /* ZGQTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 276884E8228E826000928FBF /* ZGQTableViewCell.m */; };
+		276884EC228E826100928FBF /* ZGQActionSheetView.m in Sources */ = {isa = PBXBuildFile; fileRef = 276884E9228E826000928FBF /* ZGQActionSheetView.m */; };
 		276A424922827F0B003A13F6 /* TitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 276A424822827F0B003A13F6 /* TitleView.xib */; };
 		276A424C22827FBD003A13F6 /* MyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 276A424B22827FBD003A13F6 /* MyView.m */; };
 		276A424E2283CA05003A13F6 /* Province.plist in Resources */ = {isa = PBXBuildFile; fileRef = 276A424D2283CA05003A13F6 /* Province.plist */; };
@@ -135,12 +135,12 @@
 		276884D1228AA6EA00928FBF /* RecordModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecordModel.m; sourceTree = "<group>"; };
 		276884D6228CF8D100928FBF /* UIButton+Extend.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+Extend.h"; sourceTree = "<group>"; };
 		276884D7228CF8D100928FBF /* UIButton+Extend.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Extend.m"; sourceTree = "<group>"; };
-		276884DA228CFE3F00928FBF /* ZGQActionSheetView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZGQActionSheetView.h; sourceTree = "<group>"; };
-		276884DB228CFE3F00928FBF /* ZGQTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGQTableViewCell.m; sourceTree = "<group>"; };
-		276884DC228CFE3F00928FBF /* ZGQActionSheetView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGQActionSheetView.m; sourceTree = "<group>"; };
-		276884DD228CFE3F00928FBF /* ZGQTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZGQTableViewCell.h; sourceTree = "<group>"; };
 		276884E3228E55FA00928FBF /* PhotoCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoCollectionViewCell.h; sourceTree = "<group>"; };
 		276884E4228E55FA00928FBF /* PhotoCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoCollectionViewCell.m; sourceTree = "<group>"; };
+		276884E7228E826000928FBF /* ZGQActionSheetView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZGQActionSheetView.h; sourceTree = "<group>"; };
+		276884E8228E826000928FBF /* ZGQTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGQTableViewCell.m; sourceTree = "<group>"; };
+		276884E9228E826000928FBF /* ZGQActionSheetView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGQActionSheetView.m; sourceTree = "<group>"; };
+		276884EA228E826000928FBF /* ZGQTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZGQTableViewCell.h; sourceTree = "<group>"; };
 		276A424822827F0B003A13F6 /* TitleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TitleView.xib; sourceTree = "<group>"; };
 		276A424A22827FBD003A13F6 /* MyView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyView.h; sourceTree = "<group>"; };
 		276A424B22827FBD003A13F6 /* MyView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyView.m; sourceTree = "<group>"; };
@@ -359,16 +359,15 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		276884D9228CFE3F00928FBF /* ZGQActionSheetView */ = {
+		276884E6228E826000928FBF /* ZGQActionSheetView */ = {
 			isa = PBXGroup;
 			children = (
-				276884DA228CFE3F00928FBF /* ZGQActionSheetView.h */,
-				276884DB228CFE3F00928FBF /* ZGQTableViewCell.m */,
-				276884DC228CFE3F00928FBF /* ZGQActionSheetView.m */,
-				276884DD228CFE3F00928FBF /* ZGQTableViewCell.h */,
+				276884E7228E826000928FBF /* ZGQActionSheetView.h */,
+				276884E8228E826000928FBF /* ZGQTableViewCell.m */,
+				276884E9228E826000928FBF /* ZGQActionSheetView.m */,
+				276884EA228E826000928FBF /* ZGQTableViewCell.h */,
 			);
-			name = ZGQActionSheetView;
-			path = ../../../../../Downloads/ZGQActionSheetViewDemo/ZGQActionSheetViewDemo/ZGQActionSheetView;
+			path = ZGQActionSheetView;
 			sourceTree = "<group>";
 		};
 		279C588A22646F6200ECEC01 /* Cells */ = {
@@ -399,7 +398,7 @@
 		27DB442B22544F2D0066D659 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
-				276884D9228CFE3F00928FBF /* ZGQActionSheetView */,
+				276884E6228E826000928FBF /* ZGQActionSheetView */,
 				278A6A03225D837400E71B24 /* BaseNavViewController.h */,
 				278A6A04225D837400E71B24 /* BaseNavViewController.m */,
 				279C588B2264717500ECEC01 /* BaseViewController.h */,
@@ -630,8 +629,8 @@
 				27DB442A22544DBD0066D659 /* ViewModel.m in Sources */,
 				2710EAB0223F444B002F5E02 /* FirstViewController.m in Sources */,
 				2710EAD82241E206002F5E02 /* DetialViewController.m in Sources */,
+				276884EC228E826100928FBF /* ZGQActionSheetView.m in Sources */,
 				2761C8E9226EB1CA00CE875E /* AlertView.m in Sources */,
-				276884DF228CFE3F00928FBF /* ZGQActionSheetView.m in Sources */,
 				276A42512283CA5C003A13F6 /* Province.m in Sources */,
 				278A6A11225F291C00E71B24 /* SeckillViewController.m in Sources */,
 				276884D8228CF8D100928FBF /* UIButton+Extend.m in Sources */,
@@ -642,8 +641,8 @@
 				2710EA77223F3015002F5E02 /* AppDelegate.m in Sources */,
 				2709301E226422FB0082B294 /* WaterfallView.m in Sources */,
 				278A6A172260248400E71B24 /* WebViewController.m in Sources */,
+				276884EB228E826100928FBF /* ZGQTableViewCell.m in Sources */,
 				276A424C22827FBD003A13F6 /* MyView.m in Sources */,
-				276884DE228CFE3F00928FBF /* ZGQTableViewCell.m in Sources */,
 				27E87A10224C96D700D2E700 /* ASCollectionCellNode.m in Sources */,
 				276884CF228AA67900928FBF /* Goods.m in Sources */,
 				276884C4228A6A1A00928FBF /* SalesReturnCell.m in Sources */,
