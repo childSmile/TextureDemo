@@ -13,6 +13,7 @@
 #import "DetialViewController.h"
 #import "RACViewController.h"
 #import "SeckillViewController.h"
+#import "TabViewController.h"
 
 @interface SecondViewController ()<ASTableDelegate>
 
@@ -102,10 +103,15 @@
     
     [tableNode deselectRowAtIndexPath:indexPath animated:YES];
     NSLog(@"------select row  %ld" , indexPath.row);
-    SeckillViewController *vc = [[SeckillViewController alloc]init];
-    self.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:vc animated:YES];
+//    SeckillViewController *vc = [[SeckillViewController alloc]init];
+//    self.hidesBottomBarWhenPushed = YES;
+//    [self.navigationController pushViewController:vc animated:YES];
     self.hidesBottomBarWhenPushed = NO;
+    
+    
+    TabViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:NSStringFromClass([TabViewController class])];
+    //    [self presentViewController:[[UINavigationController alloc]initWithRootViewController:vc] animated:YES completion:nil];
+    [self.navigationController pushViewController:vc animated:YES];
     
 }
 

@@ -17,4 +17,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+@interface TitleCollectionViewCell : UICollectionViewCell
+
+- (void)configWithTitle:(NSString *)title;
+
+@end
+
 NS_ASSUME_NONNULL_END

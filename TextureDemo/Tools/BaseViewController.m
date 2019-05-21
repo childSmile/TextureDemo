@@ -46,16 +46,28 @@
 
 - (UINavigationBar *)navigationBar {
     if (!_navigationBar) {
-        _navigationBar = [[BaseNavigationBar alloc]initWithFrame:CGRectMake(0, 0, kMainScreen_width + StatusHeight,   NavigationHeight)];
+        _navigationBar = [[BaseNavigationBar alloc]initWithFrame:CGRectMake(0, 0, kMainScreen_width, NavigationHeight)];
         
     }
     return _navigationBar;
     
 }
 
+//- (void)viewWillAppear:(BOOL)animated {
+//    [super viewWillAppear:animated];
+//    self.navigationController.navigationBar.hidden = YES;
+//    
+//}
+//- (void)viewWillDisappear:(BOOL)animated {
+//    [super viewWillDisappear:animated];
+//    
+//    self.navigationController.navigationBar.hidden = NO;
+//}
+
 
 - (void)setupNavgationBar {
     
+    self.navigationController.navigationBar.hidden = YES;
     [self.view addSubview:self.navigationBar];
     _navigationBar.barTintColor = UIColorFromRGB(0xffffff);
     
@@ -65,12 +77,10 @@
     gl.endPoint = CGPointMake(1, 1);
     gl.colors = @[(__bridge id)[UIColor colorWithRed:238/255.0 green:114/255.0 blue:135/255.0 alpha:1.0].CGColor,(__bridge id)[UIColor colorWithRed:255/255.0 green:175/255.0 blue:126/255.0 alpha:1.0].CGColor];
     gl.locations = @[@(0.0),@(1.0f)];
-    
+
     [self.navigationBar.layer insertSublayer:gl atIndex:0];
-    
-    
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"返回" style:UIBarButtonItemStyleDone target:self action:@selector(back:)];
-    
+
+
     
     self.navigationBar.title = @"nav封装测试";
     
@@ -78,7 +88,8 @@
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     TabViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:NSStringFromClass([TabViewController class])];
-    [self presentViewController:[[UINavigationController alloc]initWithRootViewController:vc] animated:YES completion:nil];
+//    [self presentViewController:[[UINavigationController alloc]initWithRootViewController:vc] animated:YES completion:nil];
+    [self.navigationController pushViewController:vc animated:YES];
     
     /*
     

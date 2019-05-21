@@ -428,6 +428,8 @@
 }
 
 
+
+
 @end
 
 
@@ -490,5 +492,70 @@
     
 }
 
+
+
+@end
+
+
+@interface TitleCell ()
+
+
+@property (nonatomic , strong) UILabel *l;
+@property (nonatomic , strong) UIImageView *imgV;
+
+@end
+
+@implementation TitleCell
+
+
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+   self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
+        [self setUI];
+    }
+    return self;
+    
+}
+
+- (void)setUI {
+    
+    
+    
+    UILabel *l = [[UILabel alloc]init];
+    [self addSubview:l];
+    l.textColor = UIColorFromRGB(0x666666);
+    l.font = HPMZFont(35);
+    [l mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(@(HPX(120)));
+        make.centerY.equalTo(self.mas_centerY);
+    }];
+    self.l = l;
+    
+    UIImageView *img = [[UIImageView alloc]init];
+    [self addSubview:img];
+    [img mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(@(-HPX(35)));
+        make.centerY.equalTo(self.mas_centerY);
+        make.width.equalTo(@(HPX(37)));
+        make.height.equalTo(@(HPX(26)));
+    }];
+    self.imgV = img;
+    
+}
+
+
+- (void)configCellWithItem:(NSString *)title select:(BOOL)isSelect {
+
+    self.l.text = title;
+    if (isSelect) {
+        self.l.textColor = UIColorFromRGB(0xff5000);
+        self.imgV.image = [UIImage imageNamed:@"selected"];
+    } else {
+        self.l.textColor = UIColorFromRGB(0x666666);
+         self.imgV.image = [UIImage imageNamed:@""];
+    }
+    
+    
+}
 
 @end

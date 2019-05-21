@@ -41,11 +41,10 @@ CGFloat kItemSpace = 8.0;
 @implementation TabViewController
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
     
+    [super viewDidLoad];
     self.imgsArr = [NSMutableArray array];
 
-    
     [self setupTableView];
     [self setupPhotoView];
     [self setupBottomViews];

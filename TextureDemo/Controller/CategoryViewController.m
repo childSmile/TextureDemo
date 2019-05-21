@@ -12,10 +12,13 @@
 #import "DataSourceModel.h"
 #import "WaterfallView.h"
 #import "PhotoModel.h"
+#import "CategoryButtonView.h"
+#import "CategoryFillerView.h"
+
 
 static float kBtnWidth = 70;
 
-@interface CategoryViewController ()<ASTableDelegate , ASTableDataSource>
+@interface CategoryViewController ()<ASTableDelegate , ASTableDataSource , UITableViewDelegate,UIGestureRecognizerDelegate>
 
 @property (nonatomic , strong) NSArray *titleArr;
 @property (nonatomic , strong) NSArray *leftArr;
@@ -40,7 +43,17 @@ static float kBtnWidth = 70;
 
 @property (nonatomic , strong) UIButton *pullButton;
 @property (nonatomic , strong) NSArray *titleButtons;
+@property (nonatomic , strong) UIView *plurView;
 
+
+@property (nonatomic , strong) NSArray *arr;//综合排序的数据源
+@property (nonatomic , strong) CategoryButtonView *titleV;
+
+@property (nonatomic , strong) UITableView *smallTab;
+@property (nonatomic , strong) DataSourceModel *smallModel;
+@property (nonatomic , assign) NSInteger selectRow;
+
+@property (nonatomic , strong) CategoryFillerView *fillterView;
 
 
 @end
@@ -64,6 +77,8 @@ static float kBtnWidth = 70;
     
     self.titleArr = titleArr;
     
+    self.arr = @[@"综合排序" , @"价格升序", @"销量排序"];
+    
     
     NSMutableArray *dataArr = [NSMutableArray array];
     
@@ -74,22 +89,23 @@ static float kBtnWidth = 70;
             [arr addObject:[NSString stringWithFormat:@"%@-%d" , self.titleArr[i] , j]];
         }
         
-        NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:@{@"title" : titleArr[i] , @"list" : arr , @"row" : @(0)}];
+        NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:@{
+                                                                                   @"title" : titleArr[i] ,//标题
+                                                                                   @"list" : arr ,   //右边数组
+                                                                                   @"row" : @(0) ,    //左边选中row
+                                                                                   
+                                                                                   }];
         [dataArr addObject:dic];
     }
     
     self.dataArr = [dataArr copy];
     
     self.currentRow = 0;
+    self.selectRow = 0;
     
     [self setUI];
     [self setNav];
     
-    
-    
-  
-    
-    // Do any additional setup after loading the view.
 }
 
 - (void)setNav {
@@ -232,11 +248,8 @@ static float kBtnWidth = 70;
         [self.titleView setContentOffset:CGPointMake(CGRectGetMinX(btn.frame) / kMainScreen_width * kMainScreen_width - 15, 0) animated:YES];
         
  
-        
     }];
   
-    
-    
     //line
     UIView *line = [[UIView alloc]init];
     line.backgroundColor = [UIColor lightGrayColor];
@@ -249,12 +262,88 @@ static float kBtnWidth = 70;
     }];
     
     
+    [self setLeftTab];
+    [self setRightTabTitle];
+    [self setRightTab];
+    
+}
+#pragma mark - 综合排序 筛选
+- (void)setRightTabTitle {
+    
+    // 排序  筛选  按钮
+    CategoryButtonView *titleV = [[CategoryButtonView alloc]initWithFrame:CGRectMake(CGRectGetMaxX(self.leftTab.frame) , CGRectGetMinY(self.leftTab.frame), kMainScreen_width - CGRectGetWidth(self.leftTab.frame), HPX(86))];
+    [self.view addSubview:titleV];
+    self.titleV = titleV;
+    
+    //排序
+    @weakify(self);
+    [[titleV.sortBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(UIButton * x) {
+        
+        @strongify(self);
+        x.selected = !x.selected;
+        
+        if (x.selected) {
+            
+            [self.view addSubview:self.plurView];
+            [self.plurView addSubview:self.smallTab];
+            [self.smallTab mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(@(0));
+                make.right.equalTo(@(0));
+                make.height.equalTo(@(HPX(88) * self.arr.count));
+                make.top.equalTo(@(0));
+            }];
+            
+            [UIView animateWithDuration:1 animations:^{
+                x.imageView.transform = CGAffineTransformMakeRotation(M_PI);
+            }];
+            
+            
+        } else  {
+            
+            [UIView animateWithDuration:1 animations:^{
+                
+                x.imageView.transform = CGAffineTransformIdentity;
+                [self.smallTab removeFromSuperview];
+                [self.plurView removeFromSuperview];
+            }];
+            
+            
+            
+        };
+    }];
+    
+    
+    self.smallModel = [[DataSourceModel alloc]initWithCellID:NSStringFromClass([TitleCell class]) configureCellBlock:^(TitleCell * cell, id  _Nonnull item, NSIndexPath * _Nonnull indexPath) {
+        @strongify(self);
+        [cell configCellWithItem:self.arr[indexPath.row] select:indexPath.row == self.selectRow];
+
+    }];
+    
+    self.smallTab.dataSource = self.smallModel;
+   
+    RAC(self.smallModel , dataSource) = RACObserve(self, arr);
+ 
+    
+    
+    //筛选
+    [[titleV.filtterBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(UIButton * x) {
+        @strongify(self);
+        [self.fillterView showView];
+        
+    }];
+
+}
+
+
+#pragma mark - left tab
+- (void)setLeftTab {
+    
     //leftTab
     self.leftTab = [[ASTableNode alloc]initWithStyle:UITableViewStylePlain];
     self.leftTab.frame = CGRectMake(0, CGRectGetMaxY(self.titleView.frame), 100, kMainScreen_height - 40 - NavigationHeight);
     [self.view addSubview:self.leftTab.view];
     self.leftTab.delegate = self;
-//    self.leftTab.dataSource = self;
+    //    self.leftTab.dataSource = self;
     self.leftTab.view.estimatedRowHeight = 40;
     self.leftTab.view.tableFooterView = [UIView new];
     self.leftTab.view.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -276,16 +365,19 @@ static float kBtnWidth = 70;
     }];
     
     self.leftTab.dataSource = self.leftModel;
-
+    
     RAC(self.leftModel,dataSource) = RACObserve(self, leftArr);
+}
+
+#pragma mark - right tab
+- (void)setRightTab {
     
     //rightTab
-    
     self.rightTab = [[ASTableNode alloc]initWithStyle:UITableViewStylePlain];
-    self.rightTab.frame = CGRectMake(CGRectGetMaxX(self.leftTab.frame), CGRectGetMaxY(self.titleView.frame), kMainScreen_width - CGRectGetWidth(self.leftTab.frame), kMainScreen_height - 40 - NavigationHeight);
+    self.rightTab.frame = CGRectMake(CGRectGetMaxX(self.leftTab.frame), CGRectGetMaxY(self.titleV.frame), kMainScreen_width - CGRectGetWidth(self.leftTab.frame), kMainScreen_height - 40 - NavigationHeight - CGRectGetHeight(self.titleV.frame));
     [self.view addSubview:self.rightTab.view];
     self.rightTab.delegate = self;
-
+    
     self.rightTab.view.tableFooterView = [UIView new];
     
     self.rightModel = [[DataSourceModel alloc]initWithCellID:NSStringFromClass([ASTableCell class]) configureCellBlock:^(ASTableCell * cell, id  _Nonnull item, NSIndexPath * _Nonnull indexPath) {
@@ -293,22 +385,20 @@ static float kBtnWidth = 70;
         cell.buyAction = ^(NSString * _Nonnull str) {
             PhotoModel *m = self.rightArr[indexPath.row];
             NSLog(@"isSelect -- %@ " ,m  );
-//            [self.rightTab reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+            //            [self.rightTab reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
             [self.rightTab reloadData];
             
         };
         
     }];
     self.rightTab.dataSource = self.rightModel;
-
+    
     RAC(self.rightModel,dataSource) = RACObserve(self, rightArr) ;
     
     self.rightTab.view.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [self.rightTab reloadData];
         [self.rightTab.view.mj_header endRefreshing];
     }];
-    
-    
 }
 
 
@@ -382,22 +472,6 @@ static float kBtnWidth = 70;
 
 #pragma mark - ASTableDelegate , ASTableDataSource
 
-//- (ASCellNode *)tableNode:(ASTableNode *)tableNode nodeForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    if (tableNode == self.leftTab) {
-//        NSDictionary *dic = self.dataArr[self.currentBtn.tag];
-//        NSInteger currentRow = [[dic valueForKey:@"row"] integerValue];
-//        ASButtonCell *cell = [[ASButtonCell alloc]initWithTitle:self.leftArr[indexPath.row] indexPath:(NSIndexPath *)indexPath currentRow:currentRow];
-//        return cell;
-//
-//    } else {
-//        ASTableCell *cell = [[ASTableCell alloc]initWithText:self.rightArr[indexPath.row]];
-//        return cell;
-//    }
-//
-//}
-//- (NSInteger)tableNode:(ASTableNode *)tableNode numberOfRowsInSection:(NSInteger)section {
-//    return tableNode == self.leftTab ?  self.leftArr.count : self.rightArr.count;
-//}
 
 - (void)tableNode:(ASTableNode *)tableNode didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableNode deselectRowAtIndexPath:indexPath animated:YES];
@@ -405,14 +479,103 @@ static float kBtnWidth = 70;
     if (tableNode == self.leftTab) {
         NSMutableDictionary *dic = self.dataArr[self.currentBtn.tag];
         [dic setValue:@(indexPath.row) forKey:@"row"];
-        
+
         self.rightArr = [self getRight:indexPath.row];
         [self.leftTab reloadData];
         [self.rightTab.view.mj_header beginRefreshing];
+        
+        self.selectRow = 0;
+        [self dissmissTab];
+       
     }
+  
+}
+
+- (void)dissmissTab {
+    
+
+    [self.titleV.sortBtn setTitle:self.arr[self.selectRow] forState:UIControlStateNormal];
+    self.titleV.sortBtn.selected = NO;
+    [UIView animateWithDuration:1 animations:^{
+        self.titleV.sortBtn.imageView.transform = CGAffineTransformIdentity;
+        [self.smallTab reloadData];
+        [self.smallTab removeFromSuperview];
+        [self.plurView removeFromSuperview];
+    }];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+   
+    
+    self.selectRow = indexPath.row;
+    [self dissmissTab];
     
     
+    //排序 刷新 righ tab
+    [self.rightTab reloadData];
     
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    return HPX(88);
+}
+
+
+
+
+#pragma mark - 懒加载
+- (UIView *)plurView {
+    
+    if (!_plurView) {
+        
+        UIView *view = [[UIView alloc]initWithFrame:CGRectMake(CGRectGetMinX(self.rightTab.frame), CGRectGetMinY(self.rightTab.frame), CGRectGetWidth(self.rightTab.frame), CGRectGetHeight(self.rightTab.frame) - TabbarHeight)];
+        view.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.3];
+        _plurView.userInteractionEnabled = YES;
+        _plurView = view;
+        
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(dissmissTab)];
+        tap.delegate = self; //解决手势 和 cell 点击 冲突
+        [_plurView addGestureRecognizer:tap];
+ 
+    }
+    return _plurView;
+    
+}
+
+
+- (UITableView *)smallTab {
+    
+    if (!_smallTab) {
+        UITableView *tab = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
+        [tab registerClass:[TitleCell class] forCellReuseIdentifier:NSStringFromClass([TitleCell class])];
+        tab.delegate = self;
+        _smallTab = tab;
+        
+    }
+    return _smallTab;
+}
+
+- (CategoryFillerView *)fillterView {
+    
+    if (!_fillterView) {
+        _fillterView = [[CategoryFillerView alloc]initWithFrame:[UIScreen mainScreen].bounds];
+    }
+    return _fillterView;
+    
+}
+
+
+#pragma mark - UIGestureRecognizerDelegate
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(nonnull UITouch *)touch{
+    
+    NSLog(@"touch view class-%@" , [touch.view class]);
+    if ([NSStringFromClass([touch.view class]) isEqualToString:@"UITableViewCellContentView"]) {
+        
+        return NO;
+    }else {
+        
+        return YES;
+    }
 }
 
 

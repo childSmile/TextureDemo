@@ -27,6 +27,8 @@
 		2710EAD82241E206002F5E02 /* DetialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2710EAD72241E206002F5E02 /* DetialViewController.m */; };
 		2710EADB2241E259002F5E02 /* DetialRootNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 2710EADA2241E259002F5E02 /* DetialRootNode.m */; };
 		2710EADE2241E272002F5E02 /* DetialCellNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 2710EADD2241E272002F5E02 /* DetialCellNode.m */; };
+		275E4C8022939A1900B3B045 /* CategoryButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 275E4C7F22939A1900B3B045 /* CategoryButtonView.m */; };
+		275E4C832293F1DB00B3B045 /* CategoryFillerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 275E4C822293F1DB00B3B045 /* CategoryFillerView.m */; };
 		2761C8E9226EB1CA00CE875E /* AlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2761C8E8226EB1CA00CE875E /* AlertView.m */; };
 		2761C8EB226EB46600CE875E /* AlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2761C8EA226EB46600CE875E /* AlertView.xib */; };
 		2761C8EE226EC2EB00CE875E /* UIView+Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 2761C8ED226EC2EB00CE875E /* UIView+Event.m */; };
@@ -120,6 +122,10 @@
 		2710EADA2241E259002F5E02 /* DetialRootNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetialRootNode.m; sourceTree = "<group>"; };
 		2710EADC2241E272002F5E02 /* DetialCellNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetialCellNode.h; sourceTree = "<group>"; };
 		2710EADD2241E272002F5E02 /* DetialCellNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetialCellNode.m; sourceTree = "<group>"; };
+		275E4C7E22939A1900B3B045 /* CategoryButtonView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CategoryButtonView.h; sourceTree = "<group>"; };
+		275E4C7F22939A1900B3B045 /* CategoryButtonView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CategoryButtonView.m; sourceTree = "<group>"; };
+		275E4C812293F1DB00B3B045 /* CategoryFillerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CategoryFillerView.h; sourceTree = "<group>"; };
+		275E4C822293F1DB00B3B045 /* CategoryFillerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CategoryFillerView.m; sourceTree = "<group>"; };
 		2761C8E7226EB1CA00CE875E /* AlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlertView.h; sourceTree = "<group>"; };
 		2761C8E8226EB1CA00CE875E /* AlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AlertView.m; sourceTree = "<group>"; };
 		2761C8EA226EB46600CE875E /* AlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertView.xib; sourceTree = "<group>"; };
@@ -336,6 +342,10 @@
 				2761C8E7226EB1CA00CE875E /* AlertView.h */,
 				2761C8E8226EB1CA00CE875E /* AlertView.m */,
 				2761C8EA226EB46600CE875E /* AlertView.xib */,
+				275E4C7E22939A1900B3B045 /* CategoryButtonView.h */,
+				275E4C7F22939A1900B3B045 /* CategoryButtonView.m */,
+				275E4C812293F1DB00B3B045 /* CategoryFillerView.h */,
+				275E4C822293F1DB00B3B045 /* CategoryFillerView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -612,6 +622,7 @@
 				278A6A05225D837400E71B24 /* BaseNavViewController.m in Sources */,
 				278A6A02225D816700E71B24 /* SecondViewController.m in Sources */,
 				279C588D2264717500ECEC01 /* BaseViewController.m in Sources */,
+				275E4C832293F1DB00B3B045 /* CategoryFillerView.m in Sources */,
 				27DB442E22544F570066D659 /* BaseServiceTool.m in Sources */,
 				276884E5228E55FA00928FBF /* PhotoCollectionViewCell.m in Sources */,
 				27E87A19224CB69600D2E700 /* TabBarViewController.m in Sources */,
@@ -631,6 +642,7 @@
 				2710EAD82241E206002F5E02 /* DetialViewController.m in Sources */,
 				276884EC228E826100928FBF /* ZGQActionSheetView.m in Sources */,
 				2761C8E9226EB1CA00CE875E /* AlertView.m in Sources */,
+				275E4C8022939A1900B3B045 /* CategoryButtonView.m in Sources */,
 				276A42512283CA5C003A13F6 /* Province.m in Sources */,
 				278A6A11225F291C00E71B24 /* SeckillViewController.m in Sources */,
 				276884D8228CF8D100928FBF /* UIButton+Extend.m in Sources */,

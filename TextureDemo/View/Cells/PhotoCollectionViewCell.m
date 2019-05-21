@@ -48,3 +48,38 @@
 }
 
 @end
+
+
+@interface TitleCollectionViewCell ()
+
+@end
+
+@implementation TitleCollectionViewCell
+
+
+
+- (void)configWithTitle:(NSString *)title {
+    
+    for (UIView *view in self.subviews) {
+        [view removeFromSuperview];
+    }
+    
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self addSubview:btn];
+    [btn setBackgroundImage:[UIImage imageNamed:@"标签选中背景"] forState:UIControlStateSelected];
+    [btn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(@(0));
+        make.right.equalTo(@(0));
+        make.width.equalTo(@(HPX(245)));
+        make.height.equalTo(@(HPX(105)));
+    }];
+
+    [btn setTitle:title forState:UIControlStateNormal];
+    btn.backgroundColor = UIColorFromRGB(0xf4f4f4);
+    [btn setTitleColor:UIColorFromRGB(0x333333) forState:UIControlStateNormal];
+    [btn setTitleColor:UIColorFromRGB(0xff5000) forState:UIControlStateSelected];
+    btn.titleLabel.font = HPMZFont(35);
+    
+}
+
+@end

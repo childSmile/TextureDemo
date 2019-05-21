@@ -420,6 +420,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="TtZ-HS-cBM"/>
                     </view>
+                    <navigationItem key="navigationItem" id="a61-y9-gdv"/>
                     <connections>
                         <outlet property="returnResonBtn" destination="ZzR-c9-48g" id="4jH-mb-KE8"/>
                         <outlet property="returnTextField" destination="s6O-AK-dtC" id="XCS-aA-U6H"/>
@@ -434,7 +435,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9h3-Ks-spi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3016.8000000000002" y="-1126.6866566716642"/>
+            <point key="canvasLocation" x="5834.3999999999996" y="-1126.6866566716642"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="eIj-Xa-6Ym">

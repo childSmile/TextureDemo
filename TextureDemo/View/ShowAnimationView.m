@@ -14,6 +14,8 @@
 @property (nonatomic , strong) ASTableNode *tab;
 @property (nonatomic , strong) NSArray *dataArr;
 @property (nonatomic , assign) NSInteger currentRow;
+@property (nonatomic , assign) CGFloat width;
+@property (nonatomic , strong)NSString *cellid;
 
 @end
 
@@ -23,10 +25,12 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.dataArr = data;
+        self.width = frame.size.width;
         [self layoutSubViews];
     }
     return self;
 }
+
 
 
 - (void)layoutSubViews {
@@ -44,7 +48,8 @@
     tab.dataSource = self;
     
     
-    tab.frame = CGRectMake(0, 0, kMainScreen_width, self.dataArr.count * 30);
+    tab.frame = CGRectMake(0, 0, self.width, self.dataArr.count * 30);
+    NSLog(@"-----%f" , self.width);
     tab.view.scrollEnabled = NO;
     self.tab = tab;
 }

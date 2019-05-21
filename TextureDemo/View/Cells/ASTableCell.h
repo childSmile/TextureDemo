@@ -53,5 +53,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+@interface TitleCell : UITableViewCell
+
+- (void)configCellWithItem:(NSString *)title select:(BOOL)isSelect;
+
+
+@end
+
 
 NS_ASSUME_NONNULL_END

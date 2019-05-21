@@ -58,4 +58,24 @@
 }
 
 
++ (UIButton *)creatBackBtn {
+    
+    //11- 13  修改返回按钮大小  在iOS11 上返回按钮较小
+    UIImage *image = [UIImage imageNamed:@"btn_back_item"];
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    button.frame = (CGRect){
+        .origin.x = 0,
+        .origin.y = 0,
+        .size.width = 70,
+        .size.height = 44
+    };
+    
+    [button setImage:image forState:UIControlStateNormal];
+    button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;//设置按钮的图片位置居左
+    
+    return button;
+    
+}
+
+
 @end
