@@ -16,18 +16,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , strong) NSArray *arr;
 @property (nonatomic , strong) NSString *buyType;//购买类型  显示图片 0团，1惠，2秒
 
+@property (nonatomic , strong) NSString *brandTitle;//标签title
+@property (nonatomic , assign) BOOL select;//是否选中 
 
 @end
 
 
-
-//@interface RecordModel : NSObject
-//
-//@property (nonatomic , strong) NSString *text;//3/包*2包
-//@property (nonatomic , strong) NSString *price;//单价
-//@property (nonatomic , strong) NSString *number;//数量
-//@property (nonatomic , strong) NSString *unit;//单位 0包/1袋
-//
-//@end
 
 NS_ASSUME_NONNULL_END

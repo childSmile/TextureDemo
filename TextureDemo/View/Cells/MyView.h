@@ -22,4 +22,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+@interface LineView : UIView
+
+-(instancetype)initColor:(UIColor *)color;
+
+@end
+
 NS_ASSUME_NONNULL_END

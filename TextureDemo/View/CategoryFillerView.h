@@ -21,4 +21,21 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+
+@interface PriceView : UIView
+
+@property (nonatomic , strong) UITextField * minTextField;
+@property (nonatomic , strong) UITextField * maxTextField;
+
+@end
+
+
+@interface BottomView : UIView;
+
+@property (nonatomic , strong) UIButton *resetButton;//重置
+@property (nonatomic , strong) UIButton *confirmButton;//确定
+
+
+@end
+
 NS_ASSUME_NONNULL_END

@@ -36,3 +36,28 @@
 }
 
 @end
+
+
+@implementation LineView
+
+-(instancetype)initColor:(UIColor *)color {
+    
+    if ([super init]) {
+        self.backgroundColor = color;
+    }
+    
+    return self;
+    
+}
+
+
+- (instancetype)init {
+    
+    if ([super init]) {
+        self.backgroundColor = UIColorFromRGB(0xeeeeee);
+    }
+    
+    return self;
+}
+
+@end

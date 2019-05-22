@@ -167,4 +167,114 @@
     return outputImage;
 }
 
+
+/**
+ 生成一张渐变色的图片
+ @param colors 颜色数组
+ @param rect 图片大小
+ @param cornerRadius 圆角
+ @return 返回渐变图片
+ */
++ (UIImage *)gradientImageWithColors:(NSArray *)colors rect:(CGRect)rect cornerRadius:(CGFloat)cornerRadius
+{
+    if (!colors.count || CGRectEqualToRect(rect, CGRectZero)) {
+        return nil;
+    }
+    
+    CAGradientLayer *gradientLayer = [CAGradientLayer layer];
+    
+    gradientLayer.frame = rect;
+    gradientLayer.startPoint = CGPointMake(0, 0);
+    gradientLayer.endPoint = CGPointMake(1, 0);
+    NSMutableArray *mutColors = [NSMutableArray arrayWithCapacity:colors.count];
+    for (UIColor *color in colors) {
+        [mutColors addObject:(__bridge id)color.CGColor];
+    }
+    gradientLayer.colors = [NSArray arrayWithArray:mutColors];
+//    gradientLayer.cornerRadius = cornerRadius;
+    
+    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:rect byRoundingCorners:UIRectCornerTopLeft cornerRadii:CGSizeMake(cornerRadius , cornerRadius)];
+    CAShapeLayer *maskLayer = [[CAShapeLayer alloc]init];
+    maskLayer.frame = rect;
+    maskLayer.path = maskPath.CGPath;
+    gradientLayer.mask = maskLayer;
+    
+    
+    UIGraphicsBeginImageContextWithOptions(gradientLayer.frame.size, gradientLayer.opaque, 0);
+    [gradientLayer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *outputImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return outputImage;
+}
+/**
+ 生成一张渐变色的图片
+ @param colors 颜色数组
+ @param rect 图片大小
+ @param cornerRadius 圆角
+ @param corners 哪些角是圆角
+ @return 返回渐变图片
+ */
++ (UIImage *)gradientImageWithColors:(NSArray *)colors rect:(CGRect)rect cornerRadius:(CGFloat)cornerRadius corners:(UIRectCorner)corners
+{
+    if (!colors.count || CGRectEqualToRect(rect, CGRectZero)) {
+        return nil;
+    }
+    
+    CAGradientLayer *gradientLayer = [CAGradientLayer layer];
+    
+    gradientLayer.frame = rect;
+    gradientLayer.startPoint = CGPointMake(0, 0);
+    gradientLayer.endPoint = CGPointMake(1, 0);
+    NSMutableArray *mutColors = [NSMutableArray arrayWithCapacity:colors.count];
+    for (UIColor *color in colors) {
+        [mutColors addObject:(__bridge id)color.CGColor];
+    }
+    gradientLayer.colors = [NSArray arrayWithArray:mutColors];
+    
+    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:rect byRoundingCorners:corners cornerRadii:CGSizeMake(cornerRadius , cornerRadius)];
+    CAShapeLayer *maskLayer = [[CAShapeLayer alloc]init];
+    maskLayer.frame = rect;
+    maskLayer.path = maskPath.CGPath;
+    gradientLayer.mask = maskLayer;
+    
+    
+    UIGraphicsBeginImageContextWithOptions(gradientLayer.frame.size, gradientLayer.opaque, 0);
+    [gradientLayer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *outputImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return outputImage;
+}
+
+/**
+ 生成一张渐变色的图片
+ @param colors 颜色数组
+ @param rect 图片大小
+ @return 返回渐变图片
+ */
+
++ (UIImage *)gradientImageWithColors:(NSArray *)colors rect:(CGRect)rect
+{
+    if (!colors.count || CGRectEqualToRect(rect, CGRectZero)) {
+        return nil;
+    }
+    
+    CAGradientLayer *gradientLayer = [CAGradientLayer layer];
+    
+    gradientLayer.frame = rect;
+    gradientLayer.startPoint = CGPointMake(0, 0);
+    gradientLayer.endPoint = CGPointMake(1, 0);
+    NSMutableArray *mutColors = [NSMutableArray arrayWithCapacity:colors.count];
+    for (UIColor *color in colors) {
+        [mutColors addObject:(__bridge id)color.CGColor];
+    }
+    gradientLayer.colors = [NSArray arrayWithArray:mutColors];
+    
+    
+    UIGraphicsBeginImageContextWithOptions(gradientLayer.frame.size, gradientLayer.opaque, 0);
+    [gradientLayer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *outputImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return outputImage;
+}
+
 @end

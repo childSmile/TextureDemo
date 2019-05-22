@@ -27,6 +27,8 @@ NS_ASSUME_NONNULL_BEGIN
 // 声明类方法用来计算文本宽度
 + (CGFloat)textWidthWithText:(NSString *)text font:(UIFont *)font;
 
+
+
 @end
 
 NS_ASSUME_NONNULL_END

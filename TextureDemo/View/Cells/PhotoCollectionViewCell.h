@@ -17,9 +17,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface TitleCollectionViewCell : UICollectionViewCell
+@interface TitleCollectionViewCell : UICollectionViewCell//标签cell
 
-- (void)configWithTitle:(NSString *)title;
+@property (nonatomic , strong) UIButton *button;
+- (void)configWithTitle:(Goods *)model;
+
+@end
+
+@interface PurchasedGoodsCollectionViewCell : UICollectionViewCell //购买过商品cell
+
+- (void)configWithItem:(Goods *)model;
 
 @end
 

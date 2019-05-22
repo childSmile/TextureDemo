@@ -328,6 +328,19 @@ static float kBtnWidth = 70;
     //筛选
     [[titleV.filtterBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(UIButton * x) {
         @strongify(self);
+        
+        NSArray *arr  = @[@"安井" , @"海信" , @"正大" ,@"安井" , @"海信" , @"正大" ,@"安井" , @"海信" , @"正大" ,@"安井" , @"海信" , @"正大" ,@"海信" , @"正大" ,@"安井" ,@"海信" , @"正大" ,@"安井" ,@"海信" , @"正大" ,@"安井" ,];
+        NSMutableArray *arrM = [NSMutableArray array];
+        for (NSString *str in arr) {
+            Goods *model = [Goods new];
+            model.brandTitle = str;
+            model.select = NO;
+            [arrM addObject:model];
+            model.title = @"【双汇】王中王香肠双汇王中王香肠你知道会玩放假哦我就";
+            
+        }
+        self.fillterView.brandsArr = [arrM copy];
+        self.fillterView.goodsArr = [arrM copy];
         [self.fillterView showView];
         
     }];

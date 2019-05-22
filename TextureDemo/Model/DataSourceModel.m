@@ -68,7 +68,7 @@
     return self.dataSource.count;
 }
 
-#pragma mark - AScollectionview
+#pragma mark - UICollectionView
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:self.cellID forIndexPath:indexPath];

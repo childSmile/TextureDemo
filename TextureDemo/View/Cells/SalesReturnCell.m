@@ -93,7 +93,7 @@
         l.text = m.text;
         l.textColor = UIColorFromRGB(0x939393);
         l.font = HPMZFont(35);
-        l.tag = 1000;
+        l.tag = 1000 + i;
         
         
         UILabel *l2 = [UILabel new];
@@ -105,7 +105,8 @@
         l2.text = m.price;
         l2.textColor = UIColorFromRGB(0xF6551A);
         l2.font = HPMZFont(43);
-        l2.tag = 1001;
+        l2.tag = 1001 + i;
+        RAC(l2 , text) = RACObserve(m, price);
         
         
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -123,7 +124,7 @@
         btn.layer.cornerRadius = HPX(7);
         btn.layer.borderWidth = HPX(1);
         btn.layer.borderColor = [UIColorFromRGB(0xF6551A) CGColor];
-        btn.tag = 1002;
+        btn.tag = 1002 + i;
         
         //数量 可编辑
         UITextField *t = [UITextField new];
@@ -141,7 +142,7 @@
         t.textColor = UIColorFromRGB(0x939393);
         t.font = HPMZFont(43);
         t.textAlignment = NSTextAlignmentCenter;
-        t.tag = 1003;
+        t.tag = 1003 + i;
         
         
         //单位
@@ -164,7 +165,7 @@
         btn2.layer.cornerRadius = HPX(7);
         btn2.layer.borderWidth = HPX(1);
         btn2.layer.borderColor = [UIColorFromRGB(0x939393) CGColor];
-        btn2.tag = 1004;
+        btn2.tag = 1004 + i;
         [self.btnSingals addObject:[btn2 rac_signalForControlEvents:UIControlEventTouchUpInside]];
         
         //金额
@@ -178,11 +179,13 @@
         l3.text = m.price;
         l3.textColor = UIColorFromRGB(0xF6551A);
         l3.font = HPMZFont(43);
-        l3.tag = 1005;
+        l3.tag = 1005 + i;
         
         // 编辑 点击 设置
-        [[t rac_textSignal] subscribeNext:^(NSString * x) {
-            l3.text =[NSString stringWithFormat:@"%ld" ,  x.integerValue * m.price.integerValue];
+
+        RAC(l3,text) = [RACSignal combineLatest:@[t.rac_textSignal, RACObserve(m, price)] reduce:^id(NSString *number , NSString *price){
+            
+            return [NSString stringWithFormat:@"%ld" ,  number.integerValue * price.integerValue];;
         }];
         
         @weakify(self);

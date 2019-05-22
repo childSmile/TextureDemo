@@ -44,6 +44,7 @@
 #import "PhotoModel.h"
 #import "Goods.h"
 #import "RecordModel.h"
+#import "MyView.h"
 
 //类别
 #import "UIView+UIScreenDisplaying.h"

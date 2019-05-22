@@ -370,9 +370,12 @@ CGFloat kItemSpace = 8.0;
         [[RACSignal merge:[cell.btnSingals copy]] subscribeNext:^(UIButton * btn) {
             NSLog(@"indexpath -- %ld----点击 -- %ld" ,indexPath.row , btn.tag);
             NSArray *arr = @[@"袋", @"箱",@"包"]; //商品对应的单位数组 从model里去
+            NSArray *arr2 = @[@"12", @"34",@"40"]; //商品对应的单位数组 从model里去
             ZGQActionSheetView *sheet = [[ZGQActionSheetView alloc]initWithOptions:arr completion:^(NSInteger index) {
                 NSLog(@"sheet select -- %ld" , index);
                 [btn setTitle:arr[index] forState:UIControlStateNormal];
+                RecordModel *rm = m.arr[btn.tag - 1004];
+                rm.price = arr2[index];
             } cancel:^{
                NSLog(@"cancle") ;
             }] ;

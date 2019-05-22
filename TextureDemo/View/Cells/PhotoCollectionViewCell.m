@@ -52,13 +52,15 @@
 
 @interface TitleCollectionViewCell ()
 
+
+
 @end
 
 @implementation TitleCollectionViewCell
 
 
 
-- (void)configWithTitle:(NSString *)title {
+- (void)configWithTitle:(Goods *)model {
     
     for (UIView *view in self.subviews) {
         [view removeFromSuperview];
@@ -74,11 +76,61 @@
         make.height.equalTo(@(HPX(105)));
     }];
 
-    [btn setTitle:title forState:UIControlStateNormal];
+    [btn setTitle:model.brandTitle forState:UIControlStateNormal];
     btn.backgroundColor = UIColorFromRGB(0xf4f4f4);
     [btn setTitleColor:UIColorFromRGB(0x333333) forState:UIControlStateNormal];
     [btn setTitleColor:UIColorFromRGB(0xff5000) forState:UIControlStateSelected];
     btn.titleLabel.font = HPMZFont(35);
+    
+    self.button = btn;
+    RAC(self.button , selected) = RACObserve(model, select);
+}
+
+@end
+
+
+@implementation PurchasedGoodsCollectionViewCell
+
+
+
+
+- (void)configWithItem:(Goods *)model {
+    
+    
+    for (UIView *view in self.subviews) {
+        [view removeFromSuperview];
+    }
+    
+    UIImageView *imgV = [[UIImageView alloc]init];
+    imgV.contentMode = UIViewContentModeScaleAspectFit;
+    imgV.layer.cornerRadius = 5;
+    
+    imgV.backgroundColor = [UIColor grayColor];
+    [self addSubview:imgV];
+    [imgV mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(@(HPX(5)));
+        make.right.equalTo(@(-HPX(5)));
+        make.width.equalTo(@(HPX(290)));
+        make.height.equalTo(@(HPX(290)));
+    }];
+    
+    UILabel *l = [UILabel new];
+    [self addSubview:l];
+    [l mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(imgV.mas_left);
+        make.top.equalTo(imgV.mas_bottom).offset(HPX(30));
+        make.right.equalTo(imgV.mas_right);
+        make.bottom.equalTo(@(-HPX(15)));
+    }];
+    l.font = HPMZFont(32);
+    l.textColor = UIColorFromRGB(0x666666);
+    l.text  = model.title;
+    l.numberOfLines = 2;
+    l.lineBreakMode = NSLineBreakByTruncatingTail;
+    
+    
+    
+  
     
 }
 
