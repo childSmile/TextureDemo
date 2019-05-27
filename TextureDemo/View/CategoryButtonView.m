@@ -54,14 +54,16 @@
         make.left.equalTo(self.mas_left);
         make.right.equalTo(lineV.mas_left);
         make.height.equalTo(self.mas_height);
+        make.top.equalTo(@(0));
     }];
     [paixuBtn setTitleColor:UIColorFromRGB(0x666666) forState:UIControlStateNormal];
     [paixuBtn setTitleColor:UIColorFromRGB(0xff5000) forState:UIControlStateSelected];
     paixuBtn.titleLabel.font = HPMZFont(35);
     [paixuBtn setImage:[UIImage imageNamed:@"箭头"] forState:UIControlStateNormal];
-    [paixuBtn layoutButtonWithEdgeInsetsStyle:ButtonEdgeInsetsStyleRight imageTitleSpace:5];
+    [paixuBtn layoutButtonWithEdgeInsetsStyle:ButtonEdgeInsetsStyleRight imageTitleSpace:5] ;
     paixuBtn.imageView.contentMode = UIViewContentModeScaleAspectFit;
     self.sortBtn = paixuBtn;
+    
     
     
     UIButton *selectBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -71,6 +73,7 @@
         make.left.equalTo(lineV.mas_left);
         make.right.equalTo(self.mas_right);
         make.height.equalTo(self.mas_height);
+        make.top.equalTo(@(0));
     }];
     [selectBtn setTitleColor:UIColorFromRGB(0x666666) forState:UIControlStateNormal];
     [selectBtn setTitleColor:UIColorFromRGB(0xff5000) forState:UIControlStateSelected];

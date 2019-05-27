@@ -12,6 +12,7 @@
 #import "PhotoCollectionViewCell.h"
 
 CGFloat kItemSpace = 8.0;
+NSString * const CaculateTotalAmountNoticefication = @"CaculateTotalAmountNoticefication";//计算退款总金额
 
 @interface TabViewController ()<UITableViewDelegate , UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
@@ -35,6 +36,8 @@ CGFloat kItemSpace = 8.0;
 @property (nonatomic , strong) UIImagePickerController *imagePicker;
 @property (nonatomic , strong) UICollectionView *collectionView; //选择照片的第二种方法 使用collectionview排列
 @property (nonatomic, strong) DataSourceModel *viewModel2;
+@property (weak, nonatomic) IBOutlet UIButton *submintButton;
+
 
 @end
 
@@ -65,12 +68,13 @@ CGFloat kItemSpace = 8.0;
     UIView *view = [UIView new];
     [self.view3 addSubview:view];
     
-    CGFloat w = (kMainScreen_width - 4 * 15) / 3.0;
+    
     [view mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(@(kItemSpace));
-        make.top.equalTo(@(HPX(144)));
-        make.width.equalTo(@(w));
-        make.height.equalTo(@(w));
+        make.top.equalTo(@(HPX(140)));
+        make.width.equalTo(@(HPX(308)));
+//        make.height.equalTo(@(HPX(312)));
+        make.bottom.equalTo(@(-kItemSpace));
     }];
     view.backgroundColor = UIColorFromRGB(0xF3F4F8);
     view.layer.cornerRadius = 5;
@@ -124,6 +128,10 @@ CGFloat kItemSpace = 8.0;
     self.view1.layer.borderWidth = self.view2.layer.borderWidth =self.view3.layer.borderWidth = 1;
     self.view1.layer.borderColor = self.view2.layer.borderColor = self.view3.layer.borderColor =  [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0].CGColor;
     self.view1.layer.cornerRadius = self.view2.layer.cornerRadius = self.view3.layer.cornerRadius = HPX(5);
+    
+
+    
+    
     @weakify(self);
     [[self.returnResonBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
         @strongify(self);
@@ -149,6 +157,16 @@ CGFloat kItemSpace = 8.0;
         [self presentViewController:self.imagePicker animated:YES completion:nil];
     }];
 
+    
+    [[self.submintButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+        NSLog(@"提交");
+//        for (Goods *g in self.arr) {
+//            for (RecordModel *r in g.arr) {
+//                NSLog(@"number -- %@ , amount -- %@" , r.totalNumber , r.totalAmount);
+//
+//            }
+//        }
+    }];
     
 }
 
@@ -200,6 +218,7 @@ CGFloat kItemSpace = 8.0;
     
     [self.collectionView reloadData];
     
+    
     CGFloat w = CGRectGetWidth(self.photoView.frame);
     CGFloat h = CGRectGetHeight(self.photoView.frame);
     
@@ -212,7 +231,7 @@ CGFloat kItemSpace = 8.0;
         self.photoView.hidden = NO;
         [self.photoView mas_updateConstraints:^(MASConstraintMaker *make) {
             
-            make.top.equalTo(@(HPX(144) + self.imgsArr.count / 3 * (h + kItemSpace)));
+            make.top.equalTo(@(HPX(140) + self.imgsArr.count / 3 * (h + kItemSpace)));
             make.width.equalTo(@(w));
             make.height.equalTo(@(h));
             //三张图的时候 换行
@@ -341,7 +360,7 @@ CGFloat kItemSpace = 8.0;
     NSMutableArray *array3 = [NSMutableArray array];
     for (int j = 0 ;j < 5 ; j++) {
         Goods *m = [Goods new];
-        m.title = @"安井包心鱼豆腐安井安井包心鱼豆鱼豆（2.5kg/包）";
+        m.title = @"安井包心鱼豆腐安井安井包心鱼豆鱼豆(2.5kg/包)";
         
         NSMutableArray *array = [NSMutableArray array];
         for (int i = 0; i < arc4random() % 3 + 1; i++) {
@@ -356,26 +375,42 @@ CGFloat kItemSpace = 8.0;
         m.buyType = [NSString stringWithFormat:@"%d" , arc4random() % 3];
         [array2 addObject:m];
         
-        CGFloat rowH = HPX(232) +  (m.arr.count - 1) * HPX(62);
+        CGFloat rowH = HPX(230) +  (m.arr.count - 1) * HPX(60);
         [array3 addObject:@(rowH)];
     }
     
     self.arr = [array2 copy];
     self.rowHeightArr = [array3 copy];
     
+    //检测退款总额变化
+    [[[NSNotificationCenter defaultCenter] rac_addObserverForName:CaculateTotalAmountNoticefication object:nil] subscribeNext:^(id x) {
+        CGFloat total = 0;
+        for (Goods *g in self.arr) {
+            total += g.totalAmount.floatValue;
+        }
+        self.totalAmountL.text = [NSString stringWithFormat:@"￥%.2f" , total];
+        
+    }];
+    
+    
     self.viewModel = [[DataSourceModel alloc]initWithCellID:@"cell" configureCellBlock:^(SalesReturnCell * cell, id  _Nonnull item, NSIndexPath * _Nonnull indexPath) {
         Goods *m = self.arr[indexPath.row];
         [cell configItem:m];
         
+      
         [[RACSignal merge:[cell.btnSingals copy]] subscribeNext:^(UIButton * btn) {
             NSLog(@"indexpath -- %ld----点击 -- %ld" ,indexPath.row , btn.tag);
-            NSArray *arr = @[@"袋", @"箱",@"包"]; //商品对应的单位数组 从model里去
-            NSArray *arr2 = @[@"12", @"34",@"40"]; //商品对应的单位数组 从model里去
+            NSArray *arr = @[@"袋", @"箱",@"包"]; //商品对应的单位数组 从model里取
+            NSArray *price = @[@"12", @"34",@"40"]; //商品对应的单价数组 从model里取
+            NSArray *numbers = @[@"2", @"3",@"4"]; //商品对应的数量数组 从model里取
             ZGQActionSheetView *sheet = [[ZGQActionSheetView alloc]initWithOptions:arr completion:^(NSInteger index) {
                 NSLog(@"sheet select -- %ld" , index);
                 [btn setTitle:arr[index] forState:UIControlStateNormal];
                 RecordModel *rm = m.arr[btn.tag - 1004];
-                rm.price = arr2[index];
+                rm.price = price[index];
+                rm.number = numbers[index];
+                
+                
             } cancel:^{
                NSLog(@"cancle") ;
             }] ;

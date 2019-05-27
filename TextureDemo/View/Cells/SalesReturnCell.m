@@ -7,8 +7,9 @@
 //
 
 #import "SalesReturnCell.h"
+#import "TabViewController.h"
 
-@interface SalesReturnCell ()
+@interface SalesReturnCell ()<UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *imgView;
 
 @property (weak, nonatomic) IBOutlet UILabel *titleL;
@@ -44,9 +45,9 @@
 
 - (void)configItem:(Goods *)model {
     
-    
     // 显示图片 0团，1惠，2秒
     NSArray *imgs = @[@"团" , @"惠" , @"秒"];
+    
     
     [self.imgView mas_updateConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(@(HPX(22)));
@@ -55,16 +56,21 @@
         make.height.equalTo(@(HPX(190)));
     }];
     
+    [self.typeImageView mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(@(kMainScreen_width - HPX(72) - HPX(63) - HPX(33)) );
+        
+    }];
+    
     [self.titleL mas_updateConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.imgView.mas_right).offset(HPX(53));
         make.top.equalTo(self.imgView.mas_top);
-        make.width.equalTo(@(HPX(536)));
+        make.right.equalTo(self.typeImageView.mas_left).offset(-HPX(86));
     }];
     
-    
+
     
     self.viewWidthCon.constant = HPX(1510);
-    self.viewHeiCon.constant = HPX(232) + (model.arr.count - 1 ) * HPX(62);
+    self.viewHeiCon.constant = HPX(230) + (model.arr.count - 1 ) * HPX(60);
     
     
     self.titleL.text = model.title;
@@ -79,7 +85,13 @@
         }
     }
     //避免复用位置不对
-    [self.sc setContentOffset:self.sc.contentOffset animated:YES];
+    [self.sc setContentOffset:model.offset];
+    [[self rac_signalForSelector:@selector(scrollViewDidEndScrollingAnimation:) fromProtocol:@protocol(UIScrollViewDelegate)] subscribeNext:^(id x) {
+        model.offset = self.sc.contentOffset;
+    }];
+    self.sc.delegate = nil;
+    self.sc.delegate = self;
+    
     
     for (int i = 0; i < model.arr.count; i++) {
         RecordModel *m = model.arr[i];
@@ -106,7 +118,9 @@
         l2.textColor = UIColorFromRGB(0xF6551A);
         l2.font = HPMZFont(43);
         l2.tag = 1001 + i;
-        RAC(l2 , text) = RACObserve(m, price);
+        RAC(l2 , text) = [RACObserve(m, price) map:^id(NSString * value) {
+           return [NSString stringWithFormat:@"￥%@" ,value] ;
+        }];
         
         
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -143,6 +157,8 @@
         t.font = HPMZFont(43);
         t.textAlignment = NSTextAlignmentCenter;
         t.tag = 1003 + i;
+        
+        RAC(t , text) = RACObserve(m, number);
         
         
         //单位
@@ -182,21 +198,46 @@
         l3.tag = 1005 + i;
         
         // 编辑 点击 设置
-
+        
         RAC(l3,text) = [RACSignal combineLatest:@[t.rac_textSignal, RACObserve(m, price)] reduce:^id(NSString *number , NSString *price){
+
+            if (number.integerValue > 5) {
+                number = @"5";
+            } else if (number.integerValue < 0) {
+                number = @"1";
+            }
+            t.text = number;
+            m.totalAmount = [NSString stringWithFormat:@"%ld" ,  number.integerValue * price.integerValue];
+            m.totalNumber = number;
             
-            return [NSString stringWithFormat:@"%ld" ,  number.integerValue * price.integerValue];;
+            //整个cell的总金额
+            CGFloat total = 0;
+            for (RecordModel *m in model.arr) {
+                total += m.totalAmount.floatValue;
+            }
+            model.totalAmount = [NSString stringWithFormat:@"%.2f" , total];
+            
+            //通知计算退款总金额
+            [[NSNotificationCenter defaultCenter] postNotificationName:CaculateTotalAmountNoticefication object:nil];
+            
+            return [NSString stringWithFormat:@"￥%ld" ,  number.integerValue * price.integerValue];;
         }];
+        
+        
         
         @weakify(self);
         [[btn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
             @strongify(self);
             
             [self.sc setContentOffset:CGPointMake(self.sc.contentSize.width - self.sc.bounds.size.width, 0) animated:YES];
+            model.offset = CGPointMake(self.sc.contentSize.width - self.sc.bounds.size.width, 0);
         }];
         
         
+        
     }
+    
+
 }
 
 

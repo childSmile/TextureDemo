@@ -17,6 +17,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , strong) NSString *number;//数量
 @property (nonatomic , strong) NSString *unit;//单位 0包/1袋
 
+
+@property (nonatomic , strong) NSString *totalNumber;//最后的数量
+@property (nonatomic , strong) NSString *totalAmount;//最后的金额
+
 @end
 
 NS_ASSUME_NONNULL_END

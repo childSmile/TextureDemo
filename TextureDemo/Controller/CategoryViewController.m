@@ -77,7 +77,7 @@ static float kBtnWidth = 70;
     
     self.titleArr = titleArr;
     
-    self.arr = @[@"综合排序" , @"价格升序", @"销量排序"];
+    self.arr = @[@"综合排序" , @"价格", @"销量排序"];
     
     
     NSMutableArray *dataArr = [NSMutableArray array];
@@ -510,6 +510,7 @@ static float kBtnWidth = 70;
     [self.titleV.sortBtn setTitle:self.arr[self.selectRow] forState:UIControlStateNormal];
     self.titleV.sortBtn.selected = NO;
     [UIView animateWithDuration:1 animations:^{
+
         self.titleV.sortBtn.imageView.transform = CGAffineTransformIdentity;
         [self.smallTab reloadData];
         [self.smallTab removeFromSuperview];

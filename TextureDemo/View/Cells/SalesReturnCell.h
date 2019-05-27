@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)configItem:(Goods *)model;
 @property (nonatomic , strong) NSMutableArray *btnSingals;//单位按钮点击事件
 
+
 @end
 
 NS_ASSUME_NONNULL_END

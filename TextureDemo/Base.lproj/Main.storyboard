@@ -424,6 +424,7 @@
                     <connections>
                         <outlet property="returnResonBtn" destination="ZzR-c9-48g" id="4jH-mb-KE8"/>
                         <outlet property="returnTextField" destination="s6O-AK-dtC" id="XCS-aA-U6H"/>
+                        <outlet property="submintButton" destination="cKv-ci-hDD" id="hL6-Ap-TZH"/>
                         <outlet property="tableView" destination="pj7-LF-EGX" id="h6o-HJ-9xx"/>
                         <outlet property="textView" destination="GdU-jz-kqz" id="jW7-EV-F9I"/>
                         <outlet property="totalAmountL" destination="cpI-f9-VZO" id="OHM-se-D3u"/>
