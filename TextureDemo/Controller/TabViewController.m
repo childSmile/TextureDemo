@@ -368,7 +368,7 @@ NSString * const CaculateTotalAmountNoticefication = @"CaculateTotalAmountNotice
             m.text = @"3/包*2包";
             m.price = @"23.0";
             m.number = @"2";
-            m.unit = [NSString stringWithFormat:@"%d" , arc4random() % 2];
+            m.unit = @"袋";
             [array addObject:m];
         }
         m.arr = array;
@@ -431,5 +431,9 @@ NSString * const CaculateTotalAmountNoticefication = @"CaculateTotalAmountNotice
     return  [self.rowHeightArr[indexPath.row] floatValue];
 }
 
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    
+    [self.view endEditing:YES];
+}
 
 @end

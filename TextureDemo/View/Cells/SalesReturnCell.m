@@ -9,7 +9,7 @@
 #import "SalesReturnCell.h"
 #import "TabViewController.h"
 
-@interface SalesReturnCell ()<UIScrollViewDelegate>
+@interface SalesReturnCell ()<UIScrollViewDelegate >
 @property (weak, nonatomic) IBOutlet UIImageView *imgView;
 
 @property (weak, nonatomic) IBOutlet UILabel *titleL;
@@ -86,11 +86,22 @@
     }
     //避免复用位置不对
     [self.sc setContentOffset:model.offset];
-    [[self rac_signalForSelector:@selector(scrollViewDidEndScrollingAnimation:) fromProtocol:@protocol(UIScrollViewDelegate)] subscribeNext:^(id x) {
+    
+    @weakify(self);
+    [[self rac_signalForSelector:@selector(scrollViewDidEndDecelerating:) fromProtocol:@protocol(UIScrollViewDelegate)] subscribeNext:^(id x) {
+        @strongify(self);
         model.offset = self.sc.contentOffset;
+        
     }];
+  
     self.sc.delegate = nil;
     self.sc.delegate = self;
+    
+    self.userInteractionEnabled = YES;
+    [self addGestureTapEventHandle:^(id sender, UITapGestureRecognizer *gestureRecognizer) {
+        @strongify(self);
+        [self endEditing:YES] ;
+    }];
     
     
     for (int i = 0; i < model.arr.count; i++) {
@@ -107,7 +118,7 @@
         l.font = HPMZFont(35);
         l.tag = 1000 + i;
         
-        
+        //单价
         UILabel *l2 = [UILabel new];
         [self addSubview:l2];
         [l2 mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -122,7 +133,7 @@
            return [NSString stringWithFormat:@"￥%@" ,value] ;
         }];
         
-        
+        //退
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         [self addSubview:btn];
         [btn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -157,7 +168,7 @@
         t.font = HPMZFont(43);
         t.textAlignment = NSTextAlignmentCenter;
         t.tag = 1003 + i;
-        
+
         RAC(t , text) = RACObserve(m, number);
         
         
@@ -171,8 +182,9 @@
             make.height.equalTo(@(HPX(55)));
         }];
         
+        
         // model 里 的单位 作为默认值
-        [btn2 setTitle:@"袋" forState:UIControlStateNormal];
+        [btn2 setTitle:m.unit forState:UIControlStateNormal];
         [btn2 setImage:[UIImage imageNamed:@"下拉"] forState:UIControlStateNormal];
         //调整 title 和 image 位置
         [btn2 layoutButtonWithEdgeInsetsStyle:ButtonEdgeInsetsStyleRight imageTitleSpace:HPX(0)];
@@ -207,8 +219,11 @@
                 number = @"1";
             }
             t.text = number;
+
+            
             m.totalAmount = [NSString stringWithFormat:@"%ld" ,  number.integerValue * price.integerValue];
             m.totalNumber = number;
+            m.number = number;
             
             //整个cell的总金额
             CGFloat total = 0;
@@ -233,9 +248,9 @@
             model.offset = CGPointMake(self.sc.contentSize.width - self.sc.bounds.size.width, 0);
         }];
         
-        
-        
     }
+    
+    
     
 
 }

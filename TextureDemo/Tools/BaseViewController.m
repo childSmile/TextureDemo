@@ -41,8 +41,12 @@
     
     [self setupUI];
     
+    
+    
     // Do any additional setup after loading the view.
 }
+
+
 
 - (UINavigationBar *)navigationBar {
     if (!_navigationBar) {
@@ -405,7 +409,6 @@
 
 - (void)setupUI {
    
-    
     self.birthTextField.delegate = self;
     self.cityTextField.delegate = self;
     
