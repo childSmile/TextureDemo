@@ -14,6 +14,7 @@
 #import "Province.h"
 
 #import "TabViewController.h"
+#import "TextKitViewController.h"
 
 @interface BaseViewController ()<UIPickerViewDelegate , UIPickerViewDataSource , UITextFieldDelegate>
 
@@ -30,6 +31,8 @@
 
 @property (nonatomic , strong) NSMutableArray *provinces;
 
+@property (nonatomic , strong) UIView *footView;
+
 @end
 
 @implementation BaseViewController
@@ -41,9 +44,86 @@
     
     [self setupUI];
     
+    [self setViews];
+    
     
     
     // Do any additional setup after loading the view.
+}
+
+-(void)setViews {
+    
+//    UIView *footView = [[UIView alloc]init];
+//    [self.view addSubview:footView];
+//    [footView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.bottom.equalTo(@(0));
+//        make.left.equalTo(@(0));
+//        make.right.equalTo(@(0));
+//        make.height.equalTo(@(100));
+//    }];
+//    footView.backgroundColor = [UIColor redColor];
+//    footView.userInteractionEnabled = YES;
+//    UISwipeGestureRecognizer *swipe = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(swipeAction:)];
+//    swipe.direction = UISwipeGestureRecognizerDirectionUp;
+//    [footView addGestureRecognizer:swipe];
+//
+//
+//    UIView *contentV = [UIView new];
+//    [footView addSubview:contentV];
+//    [contentV mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(@(20));
+//        make.left.equalTo(@(20));
+//        make.right.equalTo(@(-20));
+//        make.bottom.equalTo(@(-20));
+//    }];
+//    contentV.backgroundColor = [UIColor greenColor];
+//
+//    self.footView = footView;
+    
+    
+    //textiew 首行缩进
+//    CGFloat labelWidth =85.0;
+//    UITextView  *textView= [[UITextView alloc]initWithFrame:CGRectMake(10, 300,kMainScreen_width-20,100)];
+//
+//    textView.textAlignment=NSTextAlignmentLeft;
+//    textView.textColor= [UIColor blackColor];
+//    textView.backgroundColor= [UIColor clearColor];
+//    textView.font= [UIFont systemFontOfSize:17];
+//    UIBezierPath *bezi = [UIBezierPath bezierPathWithRect:CGRectMake(0,0, labelWidth+10,20)];
+//    textView.textContainer.exclusionPaths=@[bezi];
+//    textView.translatesAutoresizingMaskIntoConstraints=YES;
+//    textView.autoresizingMask=UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+//    [self.view addSubview:textView];
+//    UILabel* label = [[UILabel alloc]initWithFrame:CGRectMake(0,5, labelWidth,24)];
+//    label.text= @"左边文字";
+//    label.textAlignment=NSTextAlignmentCenter;
+//    label.textColor= [UIColor redColor];
+//    label.font= [UIFont systemFontOfSize:17];
+//    [textView addSubview:label];
+    
+}
+
+- (void)swipeAction:(UISwipeGestureRecognizer *)swipe{
+    
+    if (swipe.direction == UISwipeGestureRecognizerDirectionUp ) {
+        
+        [self.footView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.height.equalTo(@(200));
+        }];
+        
+        swipe.direction = UISwipeGestureRecognizerDirectionDown;
+        
+    } else {
+        
+        
+        [self.footView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.height.equalTo(@(100));
+        }];
+        
+        swipe.direction = UISwipeGestureRecognizerDirectionUp;
+    }
+    
+    
 }
 
 
@@ -91,8 +171,9 @@
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    TabViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:NSStringFromClass([TabViewController class])];
-//    [self presentViewController:[[UINavigationController alloc]initWithRootViewController:vc] animated:YES completion:nil];
+//    TabViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:NSStringFromClass([TabViewController class])];
+    TextKitViewController *vc = [TextKitViewController new];
+    
     [self.navigationController pushViewController:vc animated:YES];
     
     /*

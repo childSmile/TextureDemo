@@ -168,6 +168,7 @@
         t.font = HPMZFont(43);
         t.textAlignment = NSTextAlignmentCenter;
         t.tag = 1003 + i;
+        t.keyboardType = UIKeyboardTypeNumberPad;
 
         RAC(t , text) = RACObserve(m, number);
         

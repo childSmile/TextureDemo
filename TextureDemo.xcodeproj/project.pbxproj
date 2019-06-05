@@ -27,6 +27,7 @@
 		2710EAD82241E206002F5E02 /* DetialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2710EAD72241E206002F5E02 /* DetialViewController.m */; };
 		2710EADB2241E259002F5E02 /* DetialRootNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 2710EADA2241E259002F5E02 /* DetialRootNode.m */; };
 		2710EADE2241E272002F5E02 /* DetialCellNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 2710EADD2241E272002F5E02 /* DetialCellNode.m */; };
+		275C7E4F22A5085A00F2F664 /* TextKitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 275C7E4E22A5085A00F2F664 /* TextKitViewController.m */; };
 		275E4C8022939A1900B3B045 /* CategoryButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 275E4C7F22939A1900B3B045 /* CategoryButtonView.m */; };
 		275E4C832293F1DB00B3B045 /* CategoryFillerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 275E4C822293F1DB00B3B045 /* CategoryFillerView.m */; };
 		2761C8E9226EB1CA00CE875E /* AlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2761C8E8226EB1CA00CE875E /* AlertView.m */; };
@@ -122,6 +123,8 @@
 		2710EADA2241E259002F5E02 /* DetialRootNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetialRootNode.m; sourceTree = "<group>"; };
 		2710EADC2241E272002F5E02 /* DetialCellNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetialCellNode.h; sourceTree = "<group>"; };
 		2710EADD2241E272002F5E02 /* DetialCellNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetialCellNode.m; sourceTree = "<group>"; };
+		275C7E4D22A5085A00F2F664 /* TextKitViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextKitViewController.h; sourceTree = "<group>"; };
+		275C7E4E22A5085A00F2F664 /* TextKitViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextKitViewController.m; sourceTree = "<group>"; };
 		275E4C7E22939A1900B3B045 /* CategoryButtonView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CategoryButtonView.h; sourceTree = "<group>"; };
 		275E4C7F22939A1900B3B045 /* CategoryButtonView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CategoryButtonView.m; sourceTree = "<group>"; };
 		275E4C812293F1DB00B3B045 /* CategoryFillerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CategoryFillerView.h; sourceTree = "<group>"; };
@@ -308,6 +311,8 @@
 				278A6A162260248400E71B24 /* WebViewController.m */,
 				276884CA228A972D00928FBF /* TabViewController.h */,
 				276884CB228A972D00928FBF /* TabViewController.m */,
+				275C7E4D22A5085A00F2F664 /* TextKitViewController.h */,
+				275C7E4E22A5085A00F2F664 /* TextKitViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -642,6 +647,7 @@
 				2710EAD82241E206002F5E02 /* DetialViewController.m in Sources */,
 				276884EC228E826100928FBF /* ZGQActionSheetView.m in Sources */,
 				2761C8E9226EB1CA00CE875E /* AlertView.m in Sources */,
+				275C7E4F22A5085A00F2F664 /* TextKitViewController.m in Sources */,
 				275E4C8022939A1900B3B045 /* CategoryButtonView.m in Sources */,
 				276A42512283CA5C003A13F6 /* Province.m in Sources */,
 				278A6A11225F291C00E71B24 /* SeckillViewController.m in Sources */,

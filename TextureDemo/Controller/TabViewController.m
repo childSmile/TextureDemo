@@ -129,10 +129,14 @@ NSString * const CaculateTotalAmountNoticefication = @"CaculateTotalAmountNotice
     self.view1.layer.borderColor = self.view2.layer.borderColor = self.view3.layer.borderColor =  [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0].CGColor;
     self.view1.layer.cornerRadius = self.view2.layer.cornerRadius = self.view3.layer.cornerRadius = HPX(5);
     
-
-    
-    
+    self.view2.userInteractionEnabled = YES;
     @weakify(self);
+    [self.view2 addGestureTapEventHandle:^(id sender, UITapGestureRecognizer *gestureRecognizer) {
+        @strongify(self);
+        [self.textView becomeFirstResponder];
+    }];
+    
+    
     [[self.returnResonBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
         @strongify(self);
         NSArray *arr = @[@"错发", @"质量问题",@"日期/年份不符",@"错买", @"漏发",@"漏发"]; //退货原因
