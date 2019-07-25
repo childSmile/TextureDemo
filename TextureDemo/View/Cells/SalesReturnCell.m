@@ -56,25 +56,35 @@
         make.height.equalTo(@(HPX(190)));
     }];
     
-    [self.typeImageView mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(@(kMainScreen_width - HPX(72) - HPX(63) - HPX(33)) );
-        
-    }];
+//    [self.typeImageView mas_updateConstraints:^(MASConstraintMaker *make) {
+//        make.left.equalTo(@(kMainScreen_width - HPX(72) - HPX(63) - HPX(33)) );
+//
+//
+//    }];
     
     [self.titleL mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.imgView.mas_right).offset(HPX(53));
+//        
+//        if (model.buyType.integerValue > imgs.count) {
+//            make.left.equalTo(self.typeImageView.mas_left);
+//        } else {
+//            
+//        }
+        make.left.equalTo(self.typeImageView.mas_right).offset(HPX(30));
         make.top.equalTo(self.imgView.mas_top);
-        make.right.equalTo(self.typeImageView.mas_left).offset(-HPX(86));
+//        make.right.equalTo(self.typeImageView.mas_left).offset(-HPX(86));
+//        make.width.equalTo(@(kMainScreen_width - CGRectGetMaxX(self.typeImageView.frame) - HPX(30)));
+        make.width.equalTo(@(kMainScreen_width - HPX(186) - HPX(84) - HPX(72) - HPX(63)));//这个你自己根据具体大小计算一下 我随便写的
+        
+//        make.right.equalTo(@(kMainScreen_width - HPX(30) - HPX(30)));
     }];
-    
-
+//    self.titleL.backgroundColor = [UIColor redColor];
     
     self.viewWidthCon.constant = HPX(1510);
     self.viewHeiCon.constant = HPX(230) + (model.arr.count - 1 ) * HPX(60);
     
     
     self.titleL.text = model.title;
-    self.typeImageView.image = [UIImage imageNamed:imgs[model.buyType.integerValue]];
+    self.typeImageView.image = [UIImage imageNamed:model.buyType.integerValue < imgs.count ? imgs[model.buyType.integerValue] : @""];
     
     self.btnSingals = [NSMutableArray array];
     
@@ -110,34 +120,21 @@
         UILabel *l = [UILabel new];
         [self addSubview:l];
         [l mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.titleL.mas_left);
-            make.top.equalTo(self.titleL.mas_bottom).offset(i * HPX(33) + (i + 1) * HPX(37));
+            make.left.equalTo(self.typeImageView.mas_left);
+            make.top.equalTo(self.typeImageView.mas_bottom).offset(i * HPX(33) + (i + 1) * HPX(37));
         }];
         l.text = m.text;
         l.textColor = UIColorFromRGB(0x939393);
         l.font = HPMZFont(35);
         l.tag = 1000 + i;
         
-        //单价
-        UILabel *l2 = [UILabel new];
-        [self addSubview:l2];
-        [l2 mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.right.equalTo(self.titleL.mas_right);
-            make.centerY.equalTo(l.mas_centerY);
-        }];
-        l2.text = m.price;
-        l2.textColor = UIColorFromRGB(0xF6551A);
-        l2.font = HPMZFont(43);
-        l2.tag = 1001 + i;
-        RAC(l2 , text) = [RACObserve(m, price) map:^id(NSString * value) {
-           return [NSString stringWithFormat:@"￥%@" ,value] ;
-        }];
+       
         
         //退
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         [self addSubview:btn];
         [btn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.right.equalTo(self.typeImageView.mas_right);
+            make.right.equalTo(self.titleL.mas_right);
             make.centerY.equalTo(l.mas_centerY);
             make.width.equalTo(@(HPX(111)));
             make.height.equalTo(@(HPX(55)));
@@ -150,6 +147,22 @@
         btn.layer.borderWidth = HPX(1);
         btn.layer.borderColor = [UIColorFromRGB(0xF6551A) CGColor];
         btn.tag = 1002 + i;
+        
+        //单价
+        UILabel *l2 = [UILabel new];
+        [self addSubview:l2];
+        [l2 mas_makeConstraints:^(MASConstraintMaker *make) {
+            //            make.right.equalTo(self.titleL.mas_right);
+            make.right.equalTo(btn.mas_left).offset(- HPX(15));
+            make.centerY.equalTo(l.mas_centerY);
+        }];
+        l2.text = m.price;
+        l2.textColor = UIColorFromRGB(0xF6551A);
+        l2.font = HPMZFont(43);
+        l2.tag = 1001 + i;
+        RAC(l2 , text) = [RACObserve(m, price) map:^id(NSString * value) {
+            return [NSString stringWithFormat:@"￥%@" ,value] ;
+        }];
         
         //数量 可编辑
         UITextField *t = [UITextField new];
