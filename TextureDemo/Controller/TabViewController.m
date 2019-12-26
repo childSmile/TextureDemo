@@ -414,12 +414,25 @@ NSString * const CaculateTotalAmountNoticefication = @"CaculateTotalAmountNotice
                 rm.price = price[index];
                 rm.number = numbers[index];
                 
+                ((UILabel *)[cell viewWithTag:(1005 + btn.tag - 1004)]).text = [NSString stringWithFormat:@"¥ %.f" , [price[index] floatValue] * [numbers[index] floatValue]];
                 
             } cancel:^{
                NSLog(@"cancle") ;
             }] ;
             sheet.needCancelButton = NO;
             [sheet show];
+            
+        }];
+        
+        
+        [[RACSignal merge:[cell.amountSingals copy]] subscribeNext:^(NSString * amount) {
+            NSLog(@"amount --- %@" ,amount);
+            NSString *amountStr = [amount stringByReplacingOccurrencesOfString:@"￥" withString:@""];
+            if (amountStr.floatValue == 0.0) {
+                NSLog(@"金额为0");
+            } else {
+                NSLog(@"999999");
+            }
             
         }];
     }];

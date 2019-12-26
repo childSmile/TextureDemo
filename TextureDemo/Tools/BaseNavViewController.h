@@ -12,6 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BaseNavViewController : UINavigationController
 
+- (void)showNavBarBottomLine;
+- (void)hideNavBarBottomLine;
+
 @end
 
 NS_ASSUME_NONNULL_END

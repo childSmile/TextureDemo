@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -30,6 +30,10 @@
 		275C7E4F22A5085A00F2F664 /* TextKitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 275C7E4E22A5085A00F2F664 /* TextKitViewController.m */; };
 		275E4C8022939A1900B3B045 /* CategoryButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 275E4C7F22939A1900B3B045 /* CategoryButtonView.m */; };
 		275E4C832293F1DB00B3B045 /* CategoryFillerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 275E4C822293F1DB00B3B045 /* CategoryFillerView.m */; };
+		275EBC0623B44CB000D9D1DC /* WaterFallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 275EBC0523B44CB000D9D1DC /* WaterFallViewController.m */; };
+		275EBC0B23B44D8E00D9D1DC /* WaterFallLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 275EBC0A23B44D8E00D9D1DC /* WaterFallLayout.m */; };
+		275EBC1223B4661B00D9D1DC /* GoodsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 275EBC1123B4661B00D9D1DC /* GoodsModel.m */; };
+		275EBC1523B480EF00D9D1DC /* WaterFallCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 275EBC1423B480EF00D9D1DC /* WaterFallCollectionViewCell.m */; };
 		2761C8E9226EB1CA00CE875E /* AlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2761C8E8226EB1CA00CE875E /* AlertView.m */; };
 		2761C8EB226EB46600CE875E /* AlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2761C8EA226EB46600CE875E /* AlertView.xib */; };
 		2761C8EE226EC2EB00CE875E /* UIView+Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 2761C8ED226EC2EB00CE875E /* UIView+Event.m */; };
@@ -53,6 +57,8 @@
 		278A6A11225F291C00E71B24 /* SeckillViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 278A6A10225F291C00E71B24 /* SeckillViewController.m */; };
 		278A6A172260248400E71B24 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 278A6A162260248400E71B24 /* WebViewController.m */; };
 		278A6A192260333D00E71B24 /* JStoOC.html in Resources */ = {isa = PBXBuildFile; fileRef = 278A6A182260333D00E71B24 /* JStoOC.html */; };
+		278F49AE23AA089D00012D3D /* AddressManagentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 278F49AD23AA089D00012D3D /* AddressManagentViewController.m */; };
+		278F49B123AA12E700012D3D /* SelectCityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 278F49B023AA12E700012D3D /* SelectCityViewController.m */; };
 		27926E42224DFCDD0063A40F /* ASImageTitltNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 27926E41224DFCDD0063A40F /* ASImageTitltNode.m */; };
 		279C588D2264717500ECEC01 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 279C588C2264717500ECEC01 /* BaseViewController.m */; };
 		279C58902265839C00ECEC01 /* BaseNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 279C588F2265839C00ECEC01 /* BaseNavigationBar.m */; };
@@ -129,6 +135,14 @@
 		275E4C7F22939A1900B3B045 /* CategoryButtonView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CategoryButtonView.m; sourceTree = "<group>"; };
 		275E4C812293F1DB00B3B045 /* CategoryFillerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CategoryFillerView.h; sourceTree = "<group>"; };
 		275E4C822293F1DB00B3B045 /* CategoryFillerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CategoryFillerView.m; sourceTree = "<group>"; };
+		275EBC0423B44CB000D9D1DC /* WaterFallViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WaterFallViewController.h; sourceTree = "<group>"; };
+		275EBC0523B44CB000D9D1DC /* WaterFallViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WaterFallViewController.m; sourceTree = "<group>"; };
+		275EBC0923B44D8E00D9D1DC /* WaterFallLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WaterFallLayout.h; sourceTree = "<group>"; };
+		275EBC0A23B44D8E00D9D1DC /* WaterFallLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WaterFallLayout.m; sourceTree = "<group>"; };
+		275EBC1023B4661B00D9D1DC /* GoodsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoodsModel.h; sourceTree = "<group>"; };
+		275EBC1123B4661B00D9D1DC /* GoodsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GoodsModel.m; sourceTree = "<group>"; };
+		275EBC1323B480EF00D9D1DC /* WaterFallCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WaterFallCollectionViewCell.h; sourceTree = "<group>"; };
+		275EBC1423B480EF00D9D1DC /* WaterFallCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WaterFallCollectionViewCell.m; sourceTree = "<group>"; };
 		2761C8E7226EB1CA00CE875E /* AlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlertView.h; sourceTree = "<group>"; };
 		2761C8E8226EB1CA00CE875E /* AlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AlertView.m; sourceTree = "<group>"; };
 		2761C8EA226EB46600CE875E /* AlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertView.xib; sourceTree = "<group>"; };
@@ -170,6 +184,10 @@
 		278A6A152260248400E71B24 /* WebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		278A6A162260248400E71B24 /* WebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		278A6A182260333D00E71B24 /* JStoOC.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = JStoOC.html; sourceTree = "<group>"; };
+		278F49AC23AA089D00012D3D /* AddressManagentViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddressManagentViewController.h; sourceTree = "<group>"; };
+		278F49AD23AA089D00012D3D /* AddressManagentViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddressManagentViewController.m; sourceTree = "<group>"; };
+		278F49AF23AA12E700012D3D /* SelectCityViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectCityViewController.h; sourceTree = "<group>"; };
+		278F49B023AA12E700012D3D /* SelectCityViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectCityViewController.m; sourceTree = "<group>"; };
 		27926E40224DFCDD0063A40F /* ASImageTitltNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASImageTitltNode.h; sourceTree = "<group>"; };
 		27926E41224DFCDD0063A40F /* ASImageTitltNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ASImageTitltNode.m; sourceTree = "<group>"; };
 		279C588B2264717500ECEC01 /* BaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
@@ -291,6 +309,7 @@
 		2710EABD223F7FC3002F5E02 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				275EBC0723B44CFC00D9D1DC /* WaterFall */,
 				2710EAAE223F444B002F5E02 /* FirstViewController.h */,
 				2710EAAF223F444B002F5E02 /* FirstViewController.m */,
 				2710EAD62241E206002F5E02 /* DetialViewController.h */,
@@ -313,6 +332,10 @@
 				276884CB228A972D00928FBF /* TabViewController.m */,
 				275C7E4D22A5085A00F2F664 /* TextKitViewController.h */,
 				275C7E4E22A5085A00F2F664 /* TextKitViewController.m */,
+				278F49AC23AA089D00012D3D /* AddressManagentViewController.h */,
+				278F49AD23AA089D00012D3D /* AddressManagentViewController.m */,
+				278F49AF23AA12E700012D3D /* SelectCityViewController.h */,
+				278F49B023AA12E700012D3D /* SelectCityViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -372,6 +395,37 @@
 				276A42502283CA5C003A13F6 /* Province.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		275EBC0723B44CFC00D9D1DC /* WaterFall */ = {
+			isa = PBXGroup;
+			children = (
+				275EBC0823B44D3F00D9D1DC /* Cells */,
+				275EBC0423B44CB000D9D1DC /* WaterFallViewController.h */,
+				275EBC0523B44CB000D9D1DC /* WaterFallViewController.m */,
+				275EBC0F23B465B800D9D1DC /* Models */,
+			);
+			path = WaterFall;
+			sourceTree = "<group>";
+		};
+		275EBC0823B44D3F00D9D1DC /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				275EBC0923B44D8E00D9D1DC /* WaterFallLayout.h */,
+				275EBC0A23B44D8E00D9D1DC /* WaterFallLayout.m */,
+				275EBC1323B480EF00D9D1DC /* WaterFallCollectionViewCell.h */,
+				275EBC1423B480EF00D9D1DC /* WaterFallCollectionViewCell.m */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		275EBC0F23B465B800D9D1DC /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				275EBC1023B4661B00D9D1DC /* GoodsModel.h */,
+				275EBC1123B4661B00D9D1DC /* GoodsModel.m */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		276884E6228E826000928FBF /* ZGQActionSheetView */ = {
@@ -583,17 +637,16 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-TextureDemo/Pods-TextureDemo-resources.sh",
-				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TextureDemo/Pods-TextureDemo-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TextureDemo/Pods-TextureDemo-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TextureDemo/Pods-TextureDemo-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TextureDemo/Pods-TextureDemo-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FE29050203603B07F7F92C1E /* [CP] Check Pods Manifest.lock */ = {
@@ -625,15 +678,18 @@
 				27B434FC2255A80400726796 /* CategoryViewController.m in Sources */,
 				27E87A0B2249D19100D2E700 /* ASTableCell.m in Sources */,
 				278A6A05225D837400E71B24 /* BaseNavViewController.m in Sources */,
+				275EBC1223B4661B00D9D1DC /* GoodsModel.m in Sources */,
 				278A6A02225D816700E71B24 /* SecondViewController.m in Sources */,
 				279C588D2264717500ECEC01 /* BaseViewController.m in Sources */,
 				275E4C832293F1DB00B3B045 /* CategoryFillerView.m in Sources */,
 				27DB442E22544F570066D659 /* BaseServiceTool.m in Sources */,
 				276884E5228E55FA00928FBF /* PhotoCollectionViewCell.m in Sources */,
+				278F49B123AA12E700012D3D /* SelectCityViewController.m in Sources */,
 				27E87A19224CB69600D2E700 /* TabBarViewController.m in Sources */,
 				276884CC228A972D00928FBF /* TabViewController.m in Sources */,
 				276884D2228AA6EA00928FBF /* RecordModel.m in Sources */,
 				278A6A0E225DBDD700E71B24 /* DataSourceModel.m in Sources */,
+				275EBC1523B480EF00D9D1DC /* WaterFallCollectionViewCell.m in Sources */,
 				279C58902265839C00ECEC01 /* BaseNavigationBar.m in Sources */,
 				27093024226434220082B294 /* UIView+UIScreenDisplaying.m in Sources */,
 				270674852253004C006D93E5 /* RACViewController.m in Sources */,
@@ -654,9 +710,12 @@
 				276884D8228CF8D100928FBF /* UIButton+Extend.m in Sources */,
 				2710EA88223F3016002F5E02 /* main.m in Sources */,
 				279C58D422695E1600ECEC01 /* GraphView.m in Sources */,
+				275EBC0B23B44D8E00D9D1DC /* WaterFallLayout.m in Sources */,
 				27926E42224DFCDD0063A40F /* ASImageTitltNode.m in Sources */,
 				278A6A08225D8B9100E71B24 /* ShowAnimationView.m in Sources */,
 				2710EA77223F3015002F5E02 /* AppDelegate.m in Sources */,
+				275EBC0623B44CB000D9D1DC /* WaterFallViewController.m in Sources */,
+				278F49AE23AA089D00012D3D /* AddressManagentViewController.m in Sources */,
 				2709301E226422FB0082B294 /* WaterfallView.m in Sources */,
 				278A6A172260248400E71B24 /* WebViewController.m in Sources */,
 				276884EB228E826100928FBF /* ZGQTableViewCell.m in Sources */,

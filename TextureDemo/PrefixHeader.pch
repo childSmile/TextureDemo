@@ -45,6 +45,7 @@
 #import "Goods.h"
 #import "RecordModel.h"
 #import "MyView.h"
+#import "BaseNavViewController.h"
 
 //类别
 #import "UIView+UIScreenDisplaying.h"

@@ -78,4 +78,26 @@
 }
 
 
++ (UIButton *)creatBtnWithTitle:(NSString *)title {
+    
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    btn.frame = CGRectMake(0, 0, 100, 40);
+    [btn setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 10)];
+    
+    [btn setTitle:title forState:UIControlStateNormal];
+    
+    //文字居右
+    btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;;
+    //字体大小
+    NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:title];
+    [str addAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:14]} range:NSMakeRange(0, title.length)];
+    btn.titleLabel.attributedText = str;
+    [btn setTitleColor:UIColorFromRGB(0x333333) forState:UIControlStateNormal];
+    
+    
+    return btn;
+}
+
+
+
 @end

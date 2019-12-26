@@ -30,6 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)layoutButtonWithEdgeInsetsStyle:(ButtonEdgeInsetsStyle)style imageTitleSpace:(CGFloat)space;
 
 + (UIButton *)creatBackBtn;
++ (UIButton *)creatBtnWithTitle:(NSString *)title;
 
 @end
 

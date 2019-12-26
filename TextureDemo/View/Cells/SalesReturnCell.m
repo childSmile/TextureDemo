@@ -87,6 +87,7 @@
     self.typeImageView.image = [UIImage imageNamed:model.buyType.integerValue < imgs.count ? imgs[model.buyType.integerValue] : @""];
     
     self.btnSingals = [NSMutableArray array];
+    self.amountSingals = [NSMutableArray array];
     
     //避免复用 先删除
     for (UIView *v in self.subviews) {
@@ -186,6 +187,16 @@
         RAC(t , text) = RACObserve(m, number);
         
         
+//        RACChannelTo(m,number) = RACChannelTo(t,text);
+//        RACChannelTo(t,text) = RACChannelTo(m,number);
+//        [t.rac_textSignal subscribe:RACChannelTo(m,number)];
+//        [t.rac_textSignal subscribeNext:^(NSString * x) {
+//            if (x.integerValue > 5) {
+//                x = @"5";
+//            }
+//        }];
+        
+        
         //单位
         UIButton *btn2 = [UIButton buttonWithType:UIButtonTypeCustom];
         [self addSubview:btn2];
@@ -223,21 +234,25 @@
         l3.font = HPMZFont(43);
         l3.tag = 1005 + i;
         
-        // 编辑 点击 设置
+        // 编辑 点击 设置 RACObserve(m, number)
+          
         
-        RAC(l3,text) = [RACSignal combineLatest:@[t.rac_textSignal, RACObserve(m, price)] reduce:^id(NSString *number , NSString *price){
+        RAC(l3,text) = [RACSignal combineLatest:@[t.rac_textSignal, RACObserve(m, price)] reduce:^id(NSString *number, NSString *price){
 
-            if (number.integerValue > 5) {
+            
+            if (number.integerValue > 5  ) {
                 number = @"5";
-            } else if (number.integerValue < 0) {
+            } else if (number.integerValue < 0 ) {
                 number = @"1";
             }
+
             t.text = number;
 
             
             m.totalAmount = [NSString stringWithFormat:@"%ld" ,  number.integerValue * price.integerValue];
             m.totalNumber = number;
             m.number = number;
+
             
             //整个cell的总金额
             CGFloat total = 0;
@@ -252,6 +267,9 @@
             return [NSString stringWithFormat:@"￥%ld" ,  number.integerValue * price.integerValue];;
         }];
         
+        [self.amountSingals addObject:RACObserve(l3, text)];
+       
+        
         
         
         @weakify(self);
@@ -263,6 +281,8 @@
         }];
         
     }
+    
+   
     
     
     

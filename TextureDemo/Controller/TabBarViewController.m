@@ -14,6 +14,8 @@
 #import "SecondViewController.h"
 #import "BaseNavViewController.h"
 #import "BaseViewController.h"
+#import "AddressManagentViewController.h"
+#import "WaterFallViewController.h"
 
 @interface TabBarViewController ()
 
@@ -36,6 +38,9 @@
     SecondViewController *vc5 = [SecondViewController new];
     BaseViewController *vc6 = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:NSStringFromClass([BaseViewController class])];
     
+    AddressManagentViewController *vc7 = [AddressManagentViewController new];
+    WaterFallViewController *vc8 = [WaterFallViewController new];
+    
     
     
     UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:vc];
@@ -46,9 +51,13 @@
     
     BaseNavViewController *nav6 = [[BaseNavViewController alloc]initWithRootViewController:vc6];
     
+    BaseNavViewController *nav7 = [[BaseNavViewController alloc]initWithRootViewController:vc7];
+    
+    UINavigationController *nav8 = [[UINavigationController alloc]initWithRootViewController:vc8];
     
     
-    self.viewControllers = @[nav  , nav4 , nav5 , nav6];
+    
+    self.viewControllers = @[nav  , nav4 , nav5 , nav8];
     
     UITabBarItem *item = [[UITabBarItem alloc]initWithTitle:@"首页" image:[[UIImage imageNamed:@"tab_home"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[[UIImage imageNamed:@"tab_hligh_home"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
     UITabBarItem *item2 = [[UITabBarItem alloc]initWithTitle:@"分类" image:[[UIImage imageNamed:@"tab_all_the_goods"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[[UIImage imageNamed:@"tab_high_all_the_goods"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
@@ -62,6 +71,10 @@
     
     UITabBarItem *item6 = [[UITabBarItem alloc]initWithTitle:@"nav" image:[[UIImage imageNamed:@"tab_all_the_goods"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[[UIImage imageNamed:@"tab_high_all_the_goods"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
     
+    UITabBarItem *item7 = [[UITabBarItem alloc]initWithTitle:@"选择地址" image:[[UIImage imageNamed:@"tab_all_the_goods"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[[UIImage imageNamed:@"tab_high_all_the_goods"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+    
+    UITabBarItem *item8 = [[UITabBarItem alloc]initWithTitle:@"瀑布流" image:[[UIImage imageNamed:@"tab_all_the_goods"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[[UIImage imageNamed:@"tab_high_all_the_goods"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+    
     
     nav.tabBarItem = item;
     nav2.tabBarItem = item2;
@@ -69,6 +82,8 @@
     nav4.tabBarItem = item4;
     nav5.tabBarItem = item5;
     nav6.tabBarItem = item6;
+    nav7.tabBarItem = item7;
+    nav8.tabBarItem = item8;
     
     
     [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor blackColor] , NSFontAttributeName : [UIFont systemFontOfSize:12.0]} forState:UIControlStateNormal];

@@ -16,6 +16,18 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , strong) NSString *name;
 + (instancetype)provinceWithDic:(NSDictionary *)dic;
 
+
+@property (nonatomic , strong)NSArray *cityNames;
+@property (nonatomic , strong) NSString *provinceName;
+
+@end
+
+
+@interface City : NSObject
+
+@property (nonatomic , strong)NSArray *areaNames;
+@property (nonatomic , strong) NSString *cityName;
+
 @end
 
 NS_ASSUME_NONNULL_END

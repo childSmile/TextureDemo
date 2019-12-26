@@ -390,6 +390,7 @@ static float kBtnWidth = 70;
     self.rightTab.frame = CGRectMake(CGRectGetMaxX(self.leftTab.frame), CGRectGetMaxY(self.titleV.frame), kMainScreen_width - CGRectGetWidth(self.leftTab.frame), kMainScreen_height - 40 - NavigationHeight - CGRectGetHeight(self.titleV.frame));
     [self.view addSubview:self.rightTab.view];
     self.rightTab.delegate = self;
+//    self.rightTab.view.delegate = self;
     
     self.rightTab.view.tableFooterView = [UIView new];
     
@@ -591,6 +592,8 @@ static float kBtnWidth = 70;
         return YES;
     }
 }
+
+
 
 
 @end

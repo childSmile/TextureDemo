@@ -13,7 +13,8 @@ target 'TextureDemo' do
     pod 'SDCycleScrollView'
     pod 'MBProgressHUD'
     pod 'AFNetworking'
-
+     pod 'MJExtension'
+     pod 'Reachability'
 
 #    pod 'WKWebViewController'
 

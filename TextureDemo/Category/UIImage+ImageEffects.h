@@ -32,6 +32,13 @@ NS_ASSUME_NONNULL_BEGIN
 + (UIImage *)gradientImageWithColors:(NSArray *)colors rect:(CGRect)rect cornerRadius:(CGFloat)cornerRadius;
 + (UIImage *)gradientImageWithColors:(NSArray *)colors rect:(CGRect)rect cornerRadius:(CGFloat)cornerRadius corners:(UIRectCorner)corners;
 
+
+
+
++ (UIImage *)imageFromColor:(UIColor *)color rect:(CGRect)rect;
+
+- (UIImage *)imageWithCornerRadius:(CGFloat)radius;
+
 @end
 
 NS_ASSUME_NONNULL_END
