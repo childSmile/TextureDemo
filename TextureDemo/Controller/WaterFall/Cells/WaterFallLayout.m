@@ -10,7 +10,7 @@
 
 
 /** 默认的列数    */
-static const CGFloat DefaultColunmCount = 3;
+static const CGFloat DefaultColunmCount = 2;
 /** 每一列之间的间距    */
 static const CGFloat DefaultColunmMargin = 10;
 
